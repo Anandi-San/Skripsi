@@ -1,0 +1,61 @@
+<div class=" left-0 right-0 mt-8 h-full">
+    <div class="w-2/6 h-full bg-customWhite border border-customBlue rounded-md mx-auto mb-4 ">
+        <p class="ml-4 mt-2 text-lg">Unggah dan tambahkan file</p>
+        <p class="ml-4 mt-1 text-base">Proposal Pengajuan Legalitas</p>
+        <div>
+            <div class="w-11/12 h-40 mt-4 bg-customWhite border-dashed border-2 border-customBlack rounded-md mx-auto flex flex-col items-center justify-center">
+                <label for="file-upload" class="cursor-pointer flex flex-col items-center">
+                    <i class="fas fa-file-alt fa-5x text-customBlack mb-2"></i>
+                    <p class="text-customBlack">Klik untuk Unggah atau seret dan lepas</p>
+                    <p class="text-customBlack">Ukuran maksimal file 5 MB</p>
+                </label>
+                <input id="file-upload" type="file" class="hidden" />
+                
+            </div>
+            <div id="loading" class="mt-4 mb-4 w-11/12 h-20 left-0 right-0 rounded-md bg-white border border-customBlack opacity-75 mx-auto flex flex-row items-center justify-center relative">
+                <i class="fas fa-file-alt fa-3x text-customBlack ml-4"></i>
+                <div class="flex flex-col items-start justify-center ml-4 w-3/4">
+                    <p class="text-lg font-bold">Proposal Legalitas</p>
+                    <span id="file-size" class=" text-customBlack">Size :</span>
+                    <progress id="file-progress" value="0" max="100" class="w-full h-2 rounded-lg"></progress>
+                </div>
+                <div class="mr-2 flex flex-col">
+                    <i class="fa-solid fa-x fa-1x mb-2 ml-10"></i>
+                    <span id="upload-percentage" class="text-customBlack mt-5 ml-6 ">0%</span>
+                </div>
+            </div>
+            <div class="absolute bottom-0 mt-8 left-0 h-2 w-full pt-2 border-t-2 bg-customBlue"></div>
+            
+        </div>
+    </div>
+</div>
+
+<div class="flex justify-between px-8 absolute bottom-4 left-0 right-0">
+                <button class="bg-blue-500 text-white px-4 py-2 rounded-md">Tombol 1</button>
+                <button class="bg-green-500 text-white px-4 py-2 rounded-md ml-4">Tombol 2</button>
+            </div>
+
+            <script>
+    document.getElementById('file-upload').addEventListener('change', function (e) {
+        const fileInput = e.target;
+        const fileSize = fileInput.files[0].size; // Get file size in bytes
+        const fileSizeInMB = fileSize / (1024 * 1024); // Convert file size to MB
+
+        // Display loading spinner and file size information
+        document.getElementById('loading').classList.remove('hidden');
+        document.getElementById('file-size').textContent = `Size: ${fileSizeInMB.toFixed(2)} MB`;
+
+        let progress = 0;
+        const interval = setInterval(() => {
+            progress += 10;
+            document.getElementById('file-progress').value = progress;
+            document.getElementById('upload-percentage').textContent = `${progress}%`;
+
+            if (progress >= 100) {
+                // Hide loading spinner after simulated upload completion
+                document.getElementById('loading');
+                clearInterval(interval);
+            }
+        }, 500); // Simulated upload interval (in milliseconds)
+    });
+</script>
