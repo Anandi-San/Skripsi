@@ -49,7 +49,7 @@ class UnggahLegalitas
         $request->validate([
             'files.*' => 'required|file|max:5120',
         ]);
-
+        // dd($request);   
         // Daftar nama file yang diinginkan
         $listFile = [
             'proposal_legalitas',
@@ -76,6 +76,7 @@ class UnggahLegalitas
 
         // Dapatkan ID pengguna yang sedang login
         $userId = Auth::id();
+        // dd($userId);
 
         // Cari data OrmawaPembina yang sesuai dengan ID pengguna yang sedang login
         $pivot = OrmawaPembina::where('id_ormawa', $userId)->first();
@@ -85,7 +86,7 @@ class UnggahLegalitas
         }
 
         // Variabel untuk memeriksa apakah semua file telah diunggah
-        $allFilesUploaded = true;
+        $allFilesUploaded = false;
 
         // Iterasi melalui file yang diunggah
         foreach ($listFile as $index => $fileName) {
@@ -115,16 +116,7 @@ class UnggahLegalitas
                         ]
                     );
                 }
-            } else {
-                // Jika file tidak diunggah, atur variabel untuk menunjukkan bahwa semua file belum diunggah
-                $allFilesUploaded = false;
             }
-        }
-
-        // Cek apakah semua file telah diunggah
-        if (!$allFilesUploaded) {
-            // Jika tidak, kembali ke halaman sebelumnya dengan pesan error
-            return redirect()->back()->with('error', 'Harap unggah semua file yang diperlukan sebelum melanjutkan.');
         }
 
         // Jika semua file telah diunggah, arahkan ke halaman berikutnya

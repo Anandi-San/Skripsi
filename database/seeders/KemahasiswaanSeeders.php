@@ -12,7 +12,7 @@ class KemahasiswaanSeeders extends Seeder
     public function run(): void
     {
         Kemahasiswaan::create([
-            'id_pengguna' => 3,
+            'id_pengguna' => 4,
             'id_superadmin' => 0,
             'ketua_kemahasiswaan' => 'nasai',
             'status' => 'Aktif',

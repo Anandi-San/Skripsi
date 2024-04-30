@@ -8,10 +8,14 @@ use Illuminate\Http\Request;
 class SKlegalitasService {
 public function index()
     {
-        $data = [
-            'content' => 'Kemasiswaan/SKlegalitas/index',
-        ];
-        return view('Kemahasiswaan/skLegalitas/index', $data);
+        $skLegalitas = SKlegalitas::with('pengajuanLegalitas.ormawaPembina.ormawa')->get();
+
+        return $skLegalitas;
+    }
+
+    public function create()
+    {
+        
     }
 
     public function store(Request $request)

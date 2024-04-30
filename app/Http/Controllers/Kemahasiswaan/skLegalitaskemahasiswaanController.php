@@ -27,7 +27,14 @@ class skLegalitaskemahasiswaanController extends Controller
      */
     public function create()
     {
-        //
+        $data = $this->sklegalitasService->create();
+
+        // Pastikan data adalah array
+        if (!is_array($data)) {
+            $data = [];
+        }
+    
+        return view('kemahasiswaan.skLegalitas.add', $data);
     }
 
     /**
