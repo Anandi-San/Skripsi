@@ -18,7 +18,7 @@ return new class extends Migration
             $table->date('tanggal_terbit')->nullable();
             $table->date('tanggal_berlaku_mulai')->nullable();
             $table->date('tanggal_berlaku_selesai')->nullable();
-            $table->binary('file_SK');
+            $table->string('file_SK')->nullable();
             $table->enum('status', ['belum_terkirim', 'terkirim']);
             $table->timestamps();
             $table->softDeletes();

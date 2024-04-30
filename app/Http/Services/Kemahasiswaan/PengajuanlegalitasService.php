@@ -2,14 +2,14 @@
 
 namespace App\Http\Services\Kemahasiswaan;
 
+use App\Models\PengajuanLegalitas;
 use Illuminate\Http\Request;
 
 class PengajuanlegalitasService {
     public function index()
     {
-        $data = [
-            'content' => 'Kemahasiswaan/Pengajuanlegalitas/index',
-        ];
-        return view('Kemahasiswaan/pengajuanLegalitas/index', $data);
+    $pengajuanLegalitasList = PengajuanLegalitas::with('ormawaPembina.ormawa')->get();
+
+    return $pengajuanLegalitasList;
     }
 }

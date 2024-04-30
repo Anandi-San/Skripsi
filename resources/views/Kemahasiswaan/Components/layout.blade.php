@@ -49,7 +49,7 @@
         </div>
         <hr class="my-6 border-t-2 border-blue-900">
         <div class="flex flex-col space-y-2">
-            <a href="#" class="flex items-center text-customBlack py-2 mt-2">
+            <a href="{{route('kemahasiswaan')}}" class="flex items-center text-customBlack py-2 mt-2">
                 <div class="bg-customWhite rounded-full w-10">
                 <i class="fas fa-home mr-2 fa-2x"></i>
                 </div>
@@ -57,7 +57,7 @@
                     <p class="font-bold text-base">Beranda</p>
                 </div>
             </a>
-            <a href="#" class="flex items-center text-customBlack py-2 mt-2">
+            <a href="{{route('pengajuanlegalitas.index')}}" class="flex items-center text-customBlack py-2 mt-2">
                 <div class="bg-customWhite rounded-full w-10">
                 <i class="fas fa-envelope-open-text fa-2x mr-2"></i>
                 </div>
@@ -65,7 +65,7 @@
                     <p class="font-bold text-base">Pengajuan Legalitas</p>
                 </div>
             </a>
-            <a href="#" class="flex items-center text-customBlack py-2 mt-2">
+            <a href="{{route('proposalKegiatan.index')}}" class="flex items-center text-customBlack py-2 mt-2">
                 <div class="bg-customWhite rounded-full w-10">
                 <i class="fa-solid fa-file-lines fa-2x mr-2"></i>
                 </div>
@@ -73,7 +73,7 @@
                     <p class="font-bold text-base items">Proposal Kegiatan</p>
                 </div>
             </a>
-            <a href="#" class="flex items-center text-customBlack py-2 mt-2">
+            <a href="{{route('LPJKegiatan.index')}}" class="flex items-center text-customBlack py-2 mt-2">
                 <div class="bg-customWhite rounded-full w-10">
                 <i class="fa-solid fa-file-circle-exclamation fa-2x mr-2"></i>
                 </div>
@@ -81,7 +81,7 @@
                     <p class="font-bold text-base">LPJ Kegiatan</p>
                 </div>
             </a>
-            <a href="#" class="flex items-center text-customBlack py-2 mt-2">
+            <a href="{{route('editSKlegalitas.index')}}" class="flex items-center text-customBlack py-2 mt-2">
                 <div class="bg-customWhite rounded-full w-10">
                 <i class="fa-solid fa-note-sticky fa-2x mr-2"></i>
                 </div>
@@ -89,7 +89,7 @@
                     <p class="font-bold text-base">SK Legalitas</p>
                 </div>
             </a>
-            <a href="#" class="flex items-center text-customBlack py-2 mt-2">
+            <a href="{{route('editOrmawa.index')}}" class="flex items-center text-customBlack py-2 mt-2">
                 <div class="bg-customWhite rounded-full w-10">
                 <i class="fa-solid fa-people-group fa-2x mr-2"></i>
                 </div>
@@ -97,7 +97,7 @@
                     <p class="font-bold text-base">Daftar Ormawa</p>
                 </div>
             </a>
-            <a href="#" class="flex items-center text-customBlack py-2 mt-2">
+            <a href="{{route('Pembina.index')}}" class="flex items-center text-customBlack py-2 mt-2">
                 <div class="bg-customWhite rounded-full w-10">
                     <i class="fa-solid fa-person fa-2x mr-2"></i>
                 </div>

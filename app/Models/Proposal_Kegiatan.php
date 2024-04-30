@@ -37,7 +37,7 @@ class Proposal_Kegiatan extends Model
     
     public function skLegalitas()
     {
-        return $this->hasMany(SKLegalitas::class, 'id_SK_legalitas');
+        return $this->belongsTo(SKlegalitas::class, 'id_SK_legalitas');
     }
 }
 

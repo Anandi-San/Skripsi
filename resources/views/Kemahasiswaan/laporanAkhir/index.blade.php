@@ -1,5 +1,5 @@
 @extends('Kemahasiswaan.Components.layout')
-<title>SK Legalitas</title>
+<title>Laporan Akhir</title>
 
 @php
     $states = [

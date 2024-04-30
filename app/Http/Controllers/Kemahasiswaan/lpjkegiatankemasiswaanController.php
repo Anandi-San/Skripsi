@@ -18,7 +18,7 @@ class lpjkegiatankemasiswaanController extends Controller
     {
         $lpjkegiatan = $this->lpjkegiatanService->index();
         
-        return view('Kemahasiswaan.lpjkegiatan.index', compact('lpjkegiatan'));
+        return view('Kemahasiswaan.lpjKegiatan.index', compact('lpjkegiatan'));
     }
 
     /**

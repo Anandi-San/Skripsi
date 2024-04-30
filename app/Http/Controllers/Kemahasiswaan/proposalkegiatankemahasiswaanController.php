@@ -17,9 +17,10 @@ class proposalkegiatankemahasiswaanController extends Controller
 
     public function index()
     {
-        $proposalKegiatan = $this->proposalkegiatanService->index();
+        $data = $this->proposalkegiatanService->index();
+        dd($data);
         
-        return view('Kemahasiswaan.proposalKegiatan.index', compact('proposalKegiatan'));
+        return view('Kemahasiswaan.proposalKegiatan.index', compact('data'));
     }
 
     /**

@@ -1,5 +1,5 @@
 @extends('Kemahasiswaan.Components.layout')
-<title>SK Legalitas</title>
+<title>LPJ Kegiatan</title>
 
 @php
     $states = [
@@ -10,19 +10,28 @@
             'state' => 'Nama Ormawa',
         ],
         [
-            'state' => 'Nomor SK',
+            'state' => 'SPJ Kegiatan.pdf',
         ],
         [
-            'state' => 'Tanggal Terbit',
+            'state' => 'Sampul depan.pdf',
         ],
         [
-            'state' => 'Tanggal Berlaku Mulai',
+            'state' => 'Lampiran 1.pdf',
         ],
         [
-            'state' => 'Tanggal Berlaku Selesai',
+            'state' => 'Lampiran 2.pdf',
         ],
         [
-            'state' => 'SK Legalitas',
+            'state' => 'Lampiran 3.pdf',
+        ],
+        [
+            'state' => 'Sampul Belakang.pdf',
+        ],
+        [
+            'state' => 'lainnya',
+        ],
+        [
+            'state' => 'Status',
         ],
         [
             'state' => 'Operasi',
@@ -32,22 +41,25 @@
 
 @section('content')
     <div class="flex flex-col items-center justify-center my-8 ml-4 md:ml-16 lg:ml-36 mr-4">
-        <div class="flex items-center bg-blue-500 text-white w-full md:w-9/12 h-20 shadow-lg">
+        <div class="flex items-center bg-blue-500 text-white w-full md:w-full h-20 shadow-lg">
             <p class="text-base md:text-lg font-bold ml-4">Daftar Proposal Legalitas</p>
         </div>
-        <div class="bg-customWhite w-full md:w-9/12 shadow-md mt-2 border border-gray-500 overflow-x-auto">
+        <div class="bg-customWhite w-full md:w-full shadow-md mt-2 border border-gray-500 overflow-x-auto">
             <div class="flex flex-row justify-between p-2 md:p-4">
                 <p class="text-center w-1/8 md:w-auto text-xs md:text-sm mr-1">#</p>
                 <p class="text-center w-1/8 md:w-auto text-xs md:text-sm mr-1">Nama Ormawa</p>
-                <p class="text-center w-1/8 md:w-auto text-xs md:text-sm mr-1">Nomor SK</p>
-                <p class="text-center w-1/8 md:w-auto text-xs md:text-sm mr-1">Tanggal Terbit</p>
-                <p class="text-center w-1/8 md:w-auto text-xs md:text-sm mr-1">Tangal Berlaku Mulai</p>
-                <p class="text-center w-1/8 md:w-auto text-xs md:text-sm mr-1">Tanggal Berlaku Selesai</p>
-                <p class="text-center w-1/8 md:w-auto text-xs md:text-sm mr-1">SK Legalitas</p>
+                <p class="text-center w-1/8 md:w-auto text-xs md:text-sm mr-1">SPJ kegiatan</p>
+                <p class="text-center w-1/8 md:w-auto text-xs md:text-sm mr-1">Sampul depan</p>
+                <p class="text-center w-1/8 md:w-auto text-xs md:text-sm mr-1">Lampiran 1</p>
+                <p class="text-center w-1/8 md:w-auto text-xs md:text-sm mr-1">Lampiran 2</p>
+                <p class="text-center w-1/8 md:w-auto text-xs md:text-sm mr-1">Lampiran 3</p>
+                <p class="text-center w-1/8 md:w-auto text-xs md:text-sm mr-1">Sampul belakang</p>
+                <p class="text-center w-1/8 md:w-auto text-xs md:text-sm mr-1">Lainnya</p>
+                <p class="text-center w-1/8 md:w-auto text-xs md:text-sm mr-1">Status</p>
                 <p class="text-center w-1/8 md:w-auto text-xs md:text-sm mr-1">Operasi</p>
             </div>
         </div>
-        <div class="bg-customWhite w-full md:w-9/12 shadow-md border border-gray-500 overflow-x-auto">
+        <div class="bg-customWhite w-full md:w-full shadow-md border border-gray-500 overflow-x-auto">
             <div class="flex flex-row justify-between p-2 md:p-4">
                 @foreach ($states as $state)
                     <p class="text-center w-1/8 md:w-auto text-xs md:text-sm mr-1">{!! $state['state'] !!}</p>

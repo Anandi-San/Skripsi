@@ -1,5 +1,5 @@
 @extends('Kemahasiswaan.Components.layout')
-<title>SK Legalitas</title>
+<title>Daftar Ormawa</title>
 
 @php
     $states = [
@@ -7,22 +7,16 @@
             'state' => '1',
         ],
         [
-            'state' => 'Nama Ormawa',
+            'state' => 'Ouroboros',
         ],
         [
-            'state' => 'Nomor SK',
+            'state' => 'Nur Fajri Azhar',
         ],
         [
-            'state' => 'Tanggal Terbit',
+            'state' => 'Lainnya',
         ],
         [
-            'state' => 'Tanggal Berlaku Mulai',
-        ],
-        [
-            'state' => 'Tanggal Berlaku Selesai',
-        ],
-        [
-            'state' => 'SK Legalitas',
+            'state' => 'Status',
         ],
         [
             'state' => 'Operasi',
@@ -39,11 +33,9 @@
             <div class="flex flex-row justify-between p-2 md:p-4">
                 <p class="text-center w-1/8 md:w-auto text-xs md:text-sm mr-1">#</p>
                 <p class="text-center w-1/8 md:w-auto text-xs md:text-sm mr-1">Nama Ormawa</p>
-                <p class="text-center w-1/8 md:w-auto text-xs md:text-sm mr-1">Nomor SK</p>
-                <p class="text-center w-1/8 md:w-auto text-xs md:text-sm mr-1">Tanggal Terbit</p>
-                <p class="text-center w-1/8 md:w-auto text-xs md:text-sm mr-1">Tangal Berlaku Mulai</p>
-                <p class="text-center w-1/8 md:w-auto text-xs md:text-sm mr-1">Tanggal Berlaku Selesai</p>
-                <p class="text-center w-1/8 md:w-auto text-xs md:text-sm mr-1">SK Legalitas</p>
+                <p class="text-center w-1/8 md:w-auto text-xs md:text-sm mr-1">Pembina</p>
+                <p class="text-center w-1/8 md:w-auto text-xs md:text-sm mr-1">Lainnya</p>
+                <p class="text-center w-1/8 md:w-auto text-xs md:text-sm mr-1">Status</p>
                 <p class="text-center w-1/8 md:w-auto text-xs md:text-sm mr-1">Operasi</p>
             </div>
         </div>

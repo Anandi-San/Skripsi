@@ -17,9 +17,10 @@ class pengajuanlegalitaskemahasiswaanController extends Controller
 
     public function index()
     {
-        $pengajuan = $this->pengajuanlegalitasService->index();
-        
-        return view('Kemahasiswaan.pengajuanLegalitas.index', compact('pengajuan'));
+        $data = $this->pengajuanlegalitasService->index();
+    
+        // Kirim data ke view dengan compact
+        return view('Kemahasiswaan.pengajuanLegalitas.index', compact('data'));
     }
 
     /**

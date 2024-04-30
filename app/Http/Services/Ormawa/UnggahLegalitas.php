@@ -64,10 +64,10 @@ class UnggahLegalitas
 
         // Nama file yang diinginkan dari `$data`
         $data = [
-            'proposal legalitas',
+            'Proposal legalitas',
             'AD ART',
-            'surat permohonan',
-            'biodata pembina',
+            'Surat permohonan',
+            'Biodata pembina',
             'struktur organisasi',
             'daftar sarana prasarana',
             'GBHK',

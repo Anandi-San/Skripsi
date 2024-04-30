@@ -16,7 +16,7 @@ class PengajuanLegalitas extends Model
         'id_ormawa_pembina',
         'id_kemahasiswaan',
         'proposal_legalitas',
-        'AD/ART',
+        'ad_art',
         'surat_permohonan',
         'daftar_nama_kepengurusan',
         'biodata_pembina',

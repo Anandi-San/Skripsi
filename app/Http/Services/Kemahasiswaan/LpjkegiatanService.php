@@ -10,8 +10,8 @@ class LpjkegiatanService {
 public function index()
     {
         $data = [
-            'content' => 'Kemasiswaan/LPJKegiatan/index',
+            'content' => 'Kemahasiswaan/LPJKegiatan/index',
         ];
-        return view('Kemasiswaan/lpjKegiatan/index', $data);
+        return view('Kemahasiswaan/lpjKegiatan/index', $data);
     }
 }
