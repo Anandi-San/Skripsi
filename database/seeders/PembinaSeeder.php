@@ -15,8 +15,8 @@ class PembinaSeeder extends Seeder
     public function run(): void
     {
         Pembina::create([
-            'id_pengguna' => 3,
-            'nama_pembina' => 'Nandi',
+            'id_pengguna' => 7,
+            'nama_pembina' => 'Nandi saputra',
             'photo_pembina' => 'Pembina',
         ]);
     }

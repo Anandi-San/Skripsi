@@ -16,9 +16,9 @@ class ormawakemahasiswaanController extends Controller
     }
     public function index()
     {
-        $ormawa = $this->ormawaService->index();
+        $ormawaList = $this->ormawaService->index();
         
-        return view('Kemahasiswaan.ormawa.index', compact('ormawa'));
+        return view('Kemahasiswaan.ormawa.index', compact('ormawaList'));
     }
 
     /**

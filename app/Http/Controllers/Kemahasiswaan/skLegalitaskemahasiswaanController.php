@@ -22,9 +22,6 @@ class skLegalitaskemahasiswaanController extends Controller
         return view('Kemahasiswaan.skLegalitas.index', compact('skLegalitas'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         $data = $this->sklegalitasService->create();
@@ -34,7 +31,7 @@ class skLegalitaskemahasiswaanController extends Controller
             $data = [];
         }
     
-        return view('kemahasiswaan.skLegalitas.add', $data);
+        return view('Kemahasiswaan.skLegalitas.add', $data);
     }
 
     /**
@@ -42,7 +39,7 @@ class skLegalitaskemahasiswaanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return $this->sklegalitasService->store($request);
     }
 
     /**

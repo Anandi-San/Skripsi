@@ -2,23 +2,22 @@
 <title>Tambah SK Legalitas</title>
 
 @section('content')
-<form action="{{ route('editSKlegalitas.store') }}" method="post" enctype="multipart/form-data">
-    @csrf
+
     <div class="flex flex-col items-center justify-center ml-4 md:ml-16 lg:ml-36 mt-4 md:mt-16 lg:mt-8 mr-10">
         <div class="items-center justify-center w-3/4 max-w-screen-lg mx-auto">
             <div id="nama_ormawa" class="w-2/3 h-28 border border-customBlue p-4 rounded-lg mx-auto">
                 <h3 class="mb-2 font-semibold">Nama Ormawa</h3>
-                <textarea id="nama_ormawa" name="nama_ormawa" class="w-full h-12 resize-none rounded-lg border border-customBlue">
-                </textarea>
+                <textarea id="nama_ormawa" name="nama_ormawa" class="w-full h-12 resize-none rounded-lg border border-customBlue">test</textarea>
             </div>
         </div>
     </div>
+    <form action="{{ route('editSKlegalitas.store') }}" method="post" enctype="multipart/form-data">
+    @csrf
     <div class="flex flex-col items-center justify-center ml-4 md:ml-16 lg:ml-36 mt-4 md:mt-16 lg:mt-8 mr-10">
         <div class="items-center justify-center w-3/4 max-w-screen-lg mx-auto">
-            <div id="nama_ormawa" class="w-2/3 h-28 border border-customBlue p-4 rounded-lg mx-auto">
+            <div id="nomor_SK" class="w-2/3 h-28 border border-customBlue p-4 rounded-lg mx-auto">
                 <h3 class="mb-2 font-semibold">Nomor Sk</h3>
-                <textarea id="nama_ormawa" name="nama_ormawa" class="w-full h-12 resize-none rounded-lg border border-customBlue">
-                </textarea>
+                <textarea id="nomor_SK" name="nomor_SK" class="w-full h-12 resize-none rounded-lg border border-customBlue"></textarea>
             </div>
         </div>
     </div>
@@ -32,17 +31,17 @@
     </div>
     <div class="flex flex-col items-center justify-center ml-4 md:ml-16 lg:ml-36 mt-4 md:mt-16 lg:mt-8 mr-10">
         <div class="items-center justify-center w-3/4 max-w-screen-lg mx-auto">
-            <div id="tanggal_terbit" class="w-2/3 h-28 border border-customBlue p-4 rounded-lg mx-auto">
+            <div id="tanggal_berlaku_mulai" class="w-2/3 h-28 border border-customBlue p-4 rounded-lg mx-auto">
                 <h3 class="mb-2 font-semibold">Tanggal berlaku mulai</h3>
-                <input type="date" id="tanggal_terbit" name="tanggal_terbit" class="w-full h-12 rounded-lg border border-customBlue">
+                <input type="date" id="tanggal_berlaku_mulai" name="tanggal_berlaku_mulai" class="w-full h-12 rounded-lg border border-customBlue">
             </div>
         </div>
     </div>
     <div class="flex flex-col items-center justify-center ml-4 md:ml-16 lg:ml-36 mt-4 md:mt-16 lg:mt-8 mr-10">
         <div class="items-center justify-center w-3/4 max-w-screen-lg mx-auto">
-            <div id="tanggal_terbit" class="w-2/3 h-28 border border-customBlue p-4 rounded-lg mx-auto">
+            <div id="tanggal_berlaku_selesai" class="w-2/3 h-28 border border-customBlue p-4 rounded-lg mx-auto">
                 <h3 class="mb-2 font-semibold">Tanggal berlaku selesai</h3>
-                <input type="date" id="tanggal_terbit" name="tanggal_terbit" class="w-full h-12 rounded-lg border border-customBlue">
+                <input type="date" id="tanggal_berlaku_selesai" name="tanggal_berlaku_selesai" class="w-full h-12 rounded-lg border border-customBlue">
             </div>
         </div>
     </div>
@@ -52,12 +51,12 @@
                 <p class="ml-2 mt-1 text-base md:text-lg">Unggah dan tambahkan file</p>
                 <p class="ml-2 mt-1 text-sm md:text-base">File SK</p>
                 <div class="w-10/12 h-32 md:h-36 lg:h-40 mt-4 bg-customWhite border-dashed border-2 border-customBlack rounded-md mx-auto flex flex-col items-center justify-center">
-                    <label for="fileSk" class="cursor-pointer flex flex-col items-center">
+                    <label for="file_SK" class="cursor-pointer flex flex-col items-center">
                         <i class="fas fa-file-alt fa-4x md:fa-5x lg:fa-6x text-customBlack mb-2"></i>
                         <p class="text-xs md:text-sm lg:text-base text-customBlack">Klik untuk Unggah atau seret dan lepas</p>
                         <p class="text-xs md:text-sm lg:text-base text-customBlack">Ukuran maksimal file 5 MB</p>
                     </label>
-                    <input id="fileSk" name="FileSk" type="file" class="hidden" />
+                    <input id="file_SK" name="file_SK" type="file" class="hidden" />
                 </div>
                 <div id="loading" class="mt-4 mb-4 w-10/12 h-14 md:h-16 lg:h-20 rounded-md bg-white border border-customBlack opacity-75 mx-auto flex flex-row items-center justify-center relative">
                     <i class="fas fa-file-alt fa-2x md:fa-3x lg:fa-4x text-customBlack ml-2 md:ml-4"></i>
@@ -83,11 +82,11 @@
 
 @include('Ormawa.Components.footer')
 
-        <script>
+<script>
 
 document.addEventListener('DOMContentLoaded', function() {
     // Panggil handleFileUpload untuk elemen fileSk
-    handleFileUpload('fileSk');
+    handleFileUpload('file_SK');
 });
 
 function handleFileUpload(fileId) {
