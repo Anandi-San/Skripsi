@@ -2,6 +2,7 @@
 <title>Kemahasiswaan</title>
 
 @section('content')
+<div class=" my-8 ml-4 md:ml-16 lg:ml-36 mr-4">
     <p class="font-bold text-3xl text-customBlack mt-20">Halo, Kemahasiswaan</p>
     <p class="font-bold text-2xl pb-6 text-customBlack">Selamat datang di halaman dashboard Kemahasiswaa</p>
 
@@ -45,6 +46,7 @@
         <p class="text-customBlack text-2xl">Daftar Pembina</p>
         </div>
     </a>
+</div>
 </div>
 
 @endsection

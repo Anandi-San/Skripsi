@@ -12,7 +12,6 @@ class LPJKegiatan extends Model
 
     protected $table = 'tbl_lpj_kegiatan';
 
-
     protected $fillable = [
         'id_proposal_kegiatan',
         'SPJ_kegiatan',
@@ -39,7 +38,7 @@ class LPJKegiatan extends Model
 
     public function proposalKegiatan()
     {
-        return $this->belongsTo(ProposalKegiatan::class, 'id_proposal_kegiatan');
+        return $this->belongsTo(Proposal_Kegiatan::class, 'id_proposal_kegiatan');
     }
 }
 

@@ -9,6 +9,7 @@ class PengajuanlegalitasService {
     public function index()
     {
     $pengajuanLegalitasList = PengajuanLegalitas::with('ormawaPembina.ormawa')->get();
+    // dd($pengajuanLegalitasList);
 
     return $pengajuanLegalitasList;
     }

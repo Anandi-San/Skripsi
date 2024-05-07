@@ -105,7 +105,7 @@
                         <p class="font-bold text-base">Ormawa</p>
                     </div>
                 </a>
-                <a href="#" class="flex items-center text-customBlack py-2 mt-2">
+                <a href="{{ route('edit-profil-pembina.index') }}" class="flex items-center text-customBlack py-2 mt-2">
                     <div class="bg-customWhite rounded-full w-10">
                         <img src="{{ asset('images/logo_itk.png') }}" alt="User Icon" class="w-8 h-8 rounded-full mr-2">
                     </div>

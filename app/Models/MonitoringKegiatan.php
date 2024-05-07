@@ -11,12 +11,15 @@ class MonitoringKegiatan extends Model
 {
     use HasFactory, SoftDeletes;
 
+    protected $table = 'tbl_monitoring_kegiatan';
+
     protected $fillable = [
         'id_pengajuan_legalitas',
         'id_proposal_kegiatan',
+        'id_keterangan_pembayaran',
+        'jumlah_dana',
         'saldo',
-        'dana_terpakai',
-        'status',
+        'parameter_keberhasilan',
         'catatan',
     ];
 
@@ -27,7 +30,11 @@ class MonitoringKegiatan extends Model
 
     public function proposalKegiatan()
     {
-        return $this->hasMany(ProposalKegiatan::class, 'id_proposal_kegiatan');
+        return $this->hasMany(Proposal_Kegiatan::class, 'id_proposal_kegiatan');
+    }
+    public function keteranganPembayaran()
+    {
+        return $this->hasMany(KeteranganPembayaran::class, 'id_monitoring_kegiatan');
     }
 }
 

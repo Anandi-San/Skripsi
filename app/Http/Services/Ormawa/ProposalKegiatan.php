@@ -3,7 +3,6 @@
 namespace App\Http\Services\Ormawa;
 
 use App\Models\Proposal_Kegiatan;
-use App\Models\SKlegalitas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -44,11 +43,19 @@ class ProposalKegiatan {
 {
     // Validasi input
     $request->validate([
-        // Aturan validasi untuk input teks
         'kegiatanTextArea-0' => 'required|string',
         'kegiatanTextArea-1' => 'required|string',
         'kegiatanTextArea-2' => 'required|string',
         'kegiatanTextArea-3' => 'required|string',
+        'kegiatanTextArea-4' => 'required|string',
+        'kegiatanTextArea-5' => 'required|string',
+        'kegiatanTextArea-6' => 'required|string',
+        'kegiatanTextArea-7' => 'required|string',
+        'kegiatanTextArea-8' => 'required|string',
+        'kegiatanTextArea-9' => 'required|string',
+        'kegiatanTextArea-10' => 'required|string',
+        'kegiatanTextArea-11' => 'required|string',
+        'kegiatanTextArea-12' => 'required|string',
         // Aturan validasi untuk input file
         'files.*' => 'required|file|max:5120',
     ]);
@@ -57,10 +64,19 @@ class ProposalKegiatan {
     // Simpan data ke dalam variabel
     $textData = [];
     $textAreaFields = [
-        'nomor_SK',
-        'tanggal_terbit',
-        'tanggal_berlaku_mulai',
-        'tanggal_berlaku_selesai',
+        'judul_kegiatan',
+        'pendahuluan_kegiatan',
+        'tujuan_kegiatan',
+        'nama_kegiatan',
+        'bentuk_kegiatan',
+        'sasaran',
+        'parameter_keberhasilan',
+        'waktu_dan_tempat_kegiatan',
+        'sususan_acara',
+        'rancangan_anggaran_biaya',
+        'kepanitiaan',
+        'penanggung_jawab',
+        'penutup',
     ];
     
     foreach ($textAreaFields as $index => $field) {
@@ -70,16 +86,18 @@ class ProposalKegiatan {
 
     $fileData = [];
     $fileFields = [
-        'nomor_SK',
-        'tanggal_terbit',
-        'tanggal_berlaku_mulai',
-        'tanggal_berlaku_selesai',
+        'sampul_depan',
+        'lampiran1',
+        'lampiran2',
+        'lampiran3',
+        'sampul_belakang',
     ];
     $data = [
-        'nomor_SK',
-        'tanggal_terbit',
-        'tanggal_berlaku_mulai',
-        'tanggal_berlaku_selesai',
+        'Sampul depan',
+        'Lampiran1',
+        'Lampiran2',
+        'Lampiran3',
+        'Sampul_belakang',
     ];
     
     // Proses setiap file
@@ -93,8 +111,8 @@ class ProposalKegiatan {
                 $desiredFileName = $data[$index] . '.' . $uploadedFile->getClientOriginalExtension();
 
                 // Simpan file ke storage
-                $path = $uploadedFile->storeAs('public/sk_legalitas', $desiredFileName);
-                $path = str_replace('public/sk_legalitas/', '', $path);
+                $path = $uploadedFile->storeAs('public/Proposal_kegiatan', $desiredFileName);
+                $path = str_replace('public/Proposal_kegiatan/', '', $path);
                 // Simpan path file ke array fileData
                 $fileData[$field] = $path;
             }
@@ -102,8 +120,8 @@ class ProposalKegiatan {
     }
 
     // Masukkan data teks dan file ke dalam model Proposal_Kegiatan
-    $sk_legalitas = SKlegalitas::updateOrCreate(
-        ['id_pengajuan_legalitas' => 1], // Tentukan kondisi pencarian
+    $sk_legalitas = Proposal_Kegiatan::updateOrCreate(
+        ['id_SK_legalitas' => 1], // Tentukan kondisi pencarian
         array_merge($textData, $fileData)
     );
 

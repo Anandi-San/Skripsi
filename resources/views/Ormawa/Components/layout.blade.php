@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     @vite('resources/css/app.css')
-    <title>Pembina</title>
+    <title>Ormawa</title>
 </head>
 
 <body class="overflow-hidden">
@@ -102,6 +102,14 @@
                     </div>
                     <div class="text-start lg:hidden lg:group-hover:block ml-2">
                         <p class="font-bold text-base">SK Legalitas</p>
+                    </div>
+                </a>
+                <a href="{{ route('index.Kegiatan') }}" class="flex items-center text-customBlack py-2 mt-2">
+                    <div class="bg-customWhite rounded-full w-10">
+                        <i class="fa-solid fa-tasks fa-2x mr-2"></i>
+                    </div>
+                    <div class="text-start lg:hidden lg:group-hover:block ml-2">
+                        <p class="font-bold text-base">Update Kegiatan</p>
                     </div>
                 </a>
                 <a href="{{route ('ormawa.update')}}" class="flex items-center text-customBlack py-2 mt-2">

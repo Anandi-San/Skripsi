@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class PengajuanLegalitas extends Model
@@ -16,7 +17,7 @@ class PengajuanLegalitas extends Model
         'id_ormawa_pembina',
         'id_kemahasiswaan',
         'proposal_legalitas',
-        'AD/ART',
+        'AD_ART',
         'surat_permohonan',
         'daftar_nama_kepengurusan',
         'biodata_pembina',
@@ -34,4 +35,16 @@ class PengajuanLegalitas extends Model
     {
         return $this->hasMany(Kemahasiswaan::class, 'id_kemahasiswaan');
     }
+    public function pengajuanLegalitas()
+    {
+        return $this->belongsTo(PengajuanLegalitas::class, 'id_ormawa_pembina');
+    }
+
+    // ini saya ubah ke hasone
+    public function skLegalitas()
+    {
+    return $this->hasOne(SKlegalitas::class, 'id_pengajuan_legalitas');
+    }
+
+
 }

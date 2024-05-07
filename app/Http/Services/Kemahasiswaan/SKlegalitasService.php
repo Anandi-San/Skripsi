@@ -22,26 +22,33 @@ public function index()
     {
         // Validasi input
         $request->validate([
-            // 'nama_ormawa' => 'sometimes|string|max:255',
             'nomor_SK' => 'required|string|max:255',
             'tanggal_terbit' => 'required|date',
             'tanggal_berlaku_mulai' => 'required|date',
             'tanggal_berlaku_selesai' => 'required|date',
             'file_SK' => 'required|file|max:5000|mimes:pdf,doc,docx', // Validasi file
         ]);
-
-        dd($request);
-
-        // Simpan file ke path storage/app/public/skLegalitas
+    
+        // Inisialisasi variabel untuk menyimpan path file
         $filePath = null;
+    
+        // Simpan file ke path storage/app/public/sk_legalitas dengan nama file yang diinginkan
         if ($request->hasFile('file_SK')) {
-            // Simpan file ke direktori 'skLegalitas' dalam storage publik
-            $filePath = $request->file('file_SK')->store('skLegalitas', 'public');
+            $file = $request->file('file_SK');
+            
+            // Tentukan nama file yang akan disimpan (misalnya menggunakan nama asli file)
+            $fileName = $file->getClientOriginalName();
+            
+            // Simpan file dengan menggunakan metode storeAs() di direktori 'public/sk_legalitas'
+            $filePath = $file->storeAs('public/sk_legalitas', $fileName);
+            
+            // Mengubah path file untuk disimpan di database
+            $filePath = str_replace('public/sk_legalitas/', '', $filePath);
         }
-
-        // Simpan data yang diunggah ke database
+    
+        // Buat objek SKlegalitas baru
         $skLegalitas = new SKlegalitas();
-        $skLegalitas->pengajuan_legalitas_id = 1;
+        $skLegalitas->id_pengajuan_legalitas = 1;
         $skLegalitas->nomor_SK = $request->input('nomor_SK');
         $skLegalitas->tanggal_terbit = $request->input('tanggal_terbit');
         $skLegalitas->tanggal_berlaku_mulai = $request->input('tanggal_berlaku_mulai');
@@ -49,13 +56,14 @@ public function index()
         
         // Simpan path file ke database jika file diunggah
         if ($filePath) {
-            $skLegalitas->file_SK_path = $filePath;
+            $skLegalitas->file_SK = $filePath;
         }
-
+    
         // Simpan data ke database
         $skLegalitas->save();
-
+    
         // Redirect setelah menyimpan
-        return redirect()->route('Kemahasiswaan.skLegalitas.index')->with('success', 'Data berhasil disimpan');
+        return redirect()->route('editSKlegalitas.index');
     }
+    
 }

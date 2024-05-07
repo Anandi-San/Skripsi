@@ -23,4 +23,27 @@ class Pembina extends Model
     {
         return $this->belongsTo(Pengguna::class, 'id_pengguna');
     }
+    // Di model Pembina
+    public function ormawaPembina()
+    {
+        return $this->hasMany(OrmawaPembina::class, 'id_pembina');
+    }
+
+    // Di model OrmawaPembina
+    public function pengajuanLegalitas()
+    {
+        return $this->hasMany(PengajuanLegalitas::class, 'id_ormawa_pembina');
+    }
+
+    // Di model PengajuanLegalitas
+    public function skLegalitas()
+    {
+        return $this->hasOne(SKlegalitas::class, 'id_pengajuan_legalitas');
+    }
+
+    // Di model SKlegalitas
+    public function proposalKegiatan()
+    {
+        return $this->hasMany(Proposal_Kegiatan::class, 'id_SK_legalitas');
+    }
 }

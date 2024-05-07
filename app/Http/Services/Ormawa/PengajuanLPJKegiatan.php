@@ -124,13 +124,13 @@ class PengajuanLPJkegiatan {
         }
 
         // Masukkan data teks dan file ke dalam model Proposal_Kegiatan
-        $proposalKegiatan = LPJkegiatan::updateOrCreate(
+        $lpjKegiatan = LPJkegiatan::updateOrCreate(
             ['id_proposal_kegiatan' => 1], // Tentukan kondisi pencarian
             array_merge($textData, $fileData)
         );
 
         // Simpan model untuk menyimpan perubahan ke database
-        $proposalKegiatan->save();
+        $lpjKegiatan->save();
 
         // Arahkan ke halaman berikutnya
         return redirect()->route('waitingrevision');

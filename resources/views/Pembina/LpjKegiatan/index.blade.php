@@ -3,55 +3,7 @@
 
 @section('content')
     @extends('Pembina.Components.stepper')
-    @php
-        $title = ['Judul Kegiatan', 'Pendahuluan Kegiatan', 'Tujuan Kegiatan', 'Nama Kegiatan', 'Bentuk Kegiatan', 'Sasaran', 'Parameter Keberhasilan', 'Waktu dan Tempat Kegiatan', 'Susunan Acara', 'Rancangan Anggaran Biaya', 'Kepanitiaan', 'Penganggung Jawab', 'Penutup'];
-    @endphp
-
-    {{-- <div class="grid grid-cols-2 gap-4 mt-8">
-        @for ($i = 0; $i < count($title); $i++)
-            <div class="{{ $i % 2 == 0 ? 'justify-end' : 'justify-start' }}">
-                @component('Pembina.Components.inputBox', [
-    'title' => $title[$i],
-    'textareaContainer' => "textareaContainer-$i",
-    'kegiatanTextArea' => "kegiatanTextArea-$i",
-])
-                @endcomponent
-            </div>
-        @endfor
-    </div> --}}
-
-    <div class="md:ml-72 ml-12 flex flex-col gap-8 justify-center mt-8">
-        @for ($i = 0; $i < count($title); $i += 2)
-            @if ($i + 1 == count($title) && count($title) % 2 != 0)
-                <div class="mx-auto w-3/4">
-                    @component('Pembina.Components.inputBox', [
-                        'title' => $title[$i],
-                        'textareaContainer' => "textareaContainer-$i",
-                        'kegiatanTextArea' => "kegiatanTextArea-$i",
-                    ])
-                    @endcomponent
-                </div>
-            @else
-                <div class="flex flex-col md:flex-row justify-center gap-4">
-                    @component('Pembina.Components.inputBox', [
-                        'title' => $title[$i],
-                        'textareaContainer' => "textareaContainer-$i",
-                        'kegiatanTextArea' => "kegiatanTextArea-$i",
-                    ])
-                    @endcomponent
-
-                    @if ($i + 1 < count($title))
-                        @component('Pembina.Components.inputBox', [
-                            'title' => $title[$i + 1],
-                            'textareaContainer' => 'textareaContainer-' . ($i + 1),
-                            'kegiatanTextArea' => 'kegiatanTextArea-' . ($i + 1),
-                        ])
-                        @endcomponent
-                    @endif
-                </div>
-            @endif
-        @endfor
-    </div>
+    
 
 
 
@@ -107,10 +59,6 @@
         <button
             class="w-48 bg-customWhite border-2 border-customBlue text-customBlack font-bold py-2 px-4 rounded mx-2 ml-12 transition duration-300 hover:border-blue-500">Setujui</button>
     </div>
-
-
-
-
-    @include('Ormawa.Components.footer')
+    @include('Ormawa.Components.footer2')
 
 @endsection

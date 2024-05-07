@@ -1,4 +1,4 @@
-@extends('Ormawa.Components.layout')
+@extends('Kemahasiswaan.Components.layout')
 <title>Tambah SK Legalitas</title>
 
 @section('content')

@@ -7,7 +7,7 @@
     @php
         $proposalNames = [
             'Proposal Pengajuan Legalitas',
-            'AD/ART',
+            'AD_ART',
             'Surat Permohonan',
             'Biodata Pembina',
             'Struktur Organisasi',

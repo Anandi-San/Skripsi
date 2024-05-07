@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class SKlegalitas extends Model
 {
     use HasFactory, SoftDeletes;
-    protected $table = 'tbl_SK_legalitas';
+    protected $table = 'tbl_sk_legalitas';
 
     protected $fillable = [
         'id_pengajuan_legalitas',

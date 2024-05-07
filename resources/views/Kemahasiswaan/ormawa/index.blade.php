@@ -44,38 +44,42 @@
         
         <div class="bg-customWhite w-full md:w-9/12 shadow-md border border-gray-500 overflow-x-auto">
             <div class="flex flex-row justify-between p-2 md:p-4">
-                <p class="text-center w-1/8 md:w-auto text-xs md:text-sm mr-1">#</p>
-                <p class="text-center w-1/8 md:w-auto text-xs md:text-sm mr-1">Nama Ormawa</p>
-                <p class="text-center w-1/8 md:w-auto text-xs md:text-sm mr-1">Pembina</p>
-                <p class="text-center w-1/8 md:w-auto text-xs md:text-sm mr-1">Lainnya</p>
-                <p class="text-center w-1/8 md:w-auto text-xs md:text-sm mr-1">Status</p>
-                <p class="text-center w-1/8 md:w-auto text-xs md:text-sm mr-1">Operasi</p>
+                <p class="text-center w-1/8 text-xs md:text-sm mr-1">#</p>
+                <p class="text-center w-1/16 text-xs md:text-sm mr-1">Nama Ormawa</p>
+                <p class="text-center w-1/12 text-xs md:text-sm mr-1">Pembina</p>
+                <p class="text-center w-1/12 text-xs md:text-sm mr-1">Lainnya</p>
+                <p class="text-center w-1/12 text-xs md:text-sm mr-1">Status</p>
+                <p class="text-center w-1/12 text-xs md:text-sm mr-1">Operasi</p>
             </div>
         </div>
-        <div class="bg-customWhite w-full md:w-9/12 shadow-md border border-gray-500 overflow-x-auto">
-    <div class="flex flex-row justify-between p-2 md:p-4">
-        @foreach ($ormawaList as $ormawa)
-        {{-- @php
-        dd($ormawa->ormawaPembina);
-        @endphp --}}
-    <div>
-        <p>Nama Ormawa: {{ $ormawa->nama_ormawa }}</p>
-        <p>Status: {{ $ormawa->status }}</p>
-        <p>Pembina:</p>
-        @if(is_array($ormawa->ormawaPembina) || is_object($ormawa->ormawaPembina))
-            @foreach ($ormawa->ormawaPembina as $ormawaPembina)
-                <p>{{ $ormawaPembina->pembina->nama_pembina }}</p>
+        <div class="container bg-customWhite w-full md:w-9/12 ">
+            @foreach ($ormawaList as $index => $ormawa)
+                <!-- Kotak terpisah untuk setiap item ormawa -->
+                <div class=" bg-customWhite w-full md:w-full shadow-md border border-gray-500 overflow-x-auto  p-4">
+                    <div class="flex flex-row justify-between p-2">
+                        <p class="text-center w-1/8 text-xs md:text-sm mr-1">{{ $index + 1 }}</p>
+                        <p class="text-center w-1/12 text-xs md:text-sm mr-1">{{ $ormawa->nama_ormawa }}</p>
+                        @foreach($ormawa->ormawaPembina as $pembina)
+                            <p class="text-center w-1/8 text-xs md:text-sm mr-1">{{ $pembina->pembina->nama_pembina ?? 'pembina' }}</p>
+                        @endforeach
+                        <p class="text-center w-1/12 text-xs md:text-sm mr-1">{{ $ormawa->lainnya ?? 'Lainnya' }}</p>
+                        <p class="text-center w-1/12 text-xs md:text-sm mr-1">{{ $ormawa->status ?? 'aktif' }}</p>
+                        <p class="text-center w-1/12 text-xs md:text-lg mr-1">
+                            <!-- Tautan untuk mengedit dengan ikon pensil -->
+                            <a href="#" title="Edit" class="mr-2">
+                                <i class="fas fa-users text-blue-500 ml-2"></i>
+                            </a> |
+                            <!-- Tautan untuk menghapus dengan ikon tong sampah -->
+                            <a href="#" title="Delete">
+                                <i class="fas fa-trash text-red-500 ml-2"></i>
+                            </a>
+                        </p>
+                    </div>
+                </div>
             @endforeach
-        @else
-            <p>Tidak ada pembina yang terdaftar.</p>
-        @endif
-    </div>
-@endforeach
-
-    </div>
-</div>
-
-    </div>
+        </div>
+        
+        
 
     @include('Ormawa.Components.footer2')
 @endsection

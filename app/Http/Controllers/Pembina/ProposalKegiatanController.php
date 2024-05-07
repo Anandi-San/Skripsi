@@ -15,9 +15,13 @@ class ProposalKegiatanController extends Controller
         $this->proposalKegiatanService = $proposalKegiatanService;
     }
     public function index()
-    {
-    return $this->proposalKegiatanService->index();   
-    }
+{
+    // Panggil metode `index` dari `proposalKegiatanService` dan dapatkan data yang dibutuhkan
+    $proposal_kegiatan = $this->proposalKegiatanService->index();
+    
+    return view('Pembina.ProposalKegiatan.index', compact('proposal_kegiatan'));
+}
+
 
     /**
      * Show the form for creating a new resource.

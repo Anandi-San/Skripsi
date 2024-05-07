@@ -2,18 +2,21 @@
 <title>Pembina</title>
 
 @section('content')
-    <div class="mx-auto max-w-screen-lg md:ml-36 md:mt-16 mt-8">
-        <div class="flex flex-col md:flex-row items-center">
-            <div class="w-40 h-40 md:w-auto md:h-auto rounded-full overflow-hidden">
-                <img class="object-center object-cover w-full h-full" src="/images/Ouroboros.png" alt="Ouroboros Technologies">
+    <div class="mx-auto md:ml-36 md:mt-16 mt-8">
+        <div class="mx-auto  md:mt-16 mt-8 flex justify-center"> <!-- Tambahkan class 'flex' dan 'justify-center' -->
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="w-40 h-40 md:w-auto md:h-auto rounded-full overflow-hidden">
+                    <img class="object-center object-cover w-full h-full" src="/images/Ouroboros.png" alt="Ouroboros Technologies">
+                </div>
+                <div class="md:ml-4 mt-4 md:mt-0">
+                    <p class="font-bold text-2xl text-customBlack">Ouroboros Technologies</p>
+                    <p class="text-xl text-customBlack">Ouroboros</p>
+                </div>
             </div>
-            <div class="md:ml-4 mt-4 md:mt-0">
-                <p class="font-bold text-2xl text-customBlack">Ouroboros Technologies</p>
-                <p class="text-xl text-customBlack">Ouroboros</p>
-            </div>
+            <!-- Pastikan konten yang lain tetap berada di luar wrapper flex -->
         </div>
         <hr class="w-full border-black my-4 mx-auto md:w-11/12">
-        <div class="w-full md:w-11/12 mx-auto md:ml-4"> <!-- Menambahkan margin kiri pada tampilan desktop -->
+        <div class="w-full md:w-11/12 mx-auto"> <!-- Menambahkan margin kiri pada tampilan desktop -->
             <p class="font-bold text-xl">Visi</p>
             <p class="text-customBlack">Visi Ouroboros Technologies adalah menjadikan ITK sebagai pusat pembelajaran serta
                 pengembangan teknologi informasi dan komunikasi di Kota Balikpapan.</p>
@@ -31,10 +34,10 @@
             </ol>
         </div>
 
-        <div class="flex flex-col md:flex-row justify-center md:space-x-16 mt-8">
+        <div class="flex flex-col md:flex-row justify-center md:space-x-48 mt-8">
             <div class="flex flex-col w-72 mb-8">
                 <a href="#"
-                    class="flex flex-col bg-customWhite border border-gray-400 p-2 rounded-lg w-full h-44 justify-center">
+                    class="flex flex-col bg-customWhite border border-gray-400 p-2   rounded-lg w-full h-44 justify-center">
                     <i class="fa-solid fa-money-bill-1 fa-4x mr-2 mb-1 text-customBlue"></i>
                     <p class="text-xl text-customBlack mb-1 font-semibold">RP. 10.500.00</p>
                     <p class="text-customBlue">Saldo</p>
@@ -56,8 +59,8 @@
                 <a href="#"
                     class="flex flex-col bg-customWhite border border-gray-400 p-2 rounded-lg w-full h-44 justify-center mt-4">
                     <i class="fa-solid fa-chart-line fa-4x mr-2 mb-1 text-customblue"></i>
-                    <p class="text-customBlack text-xl font-semibold mb-1">4</p>
-                    <p class="text-customBlue">Jumlah Kegiatan</p>
+                    <p class="text-customBlack text-xl font-semibold mb-1">80</p>
+                    <p class="text-customBlue">Jumlah Anggota</p>
                 </a>
             </div>
         </div>

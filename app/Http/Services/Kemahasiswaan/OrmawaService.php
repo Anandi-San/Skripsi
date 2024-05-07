@@ -11,7 +11,7 @@ class OrmawaService {
         $ormawaList = Ormawa::with(['ormawaPembina.pembina'])->get();
         // dd($ormawaList);
         
-        return view('Kemahasiswaan.ormawa.index', compact('ormawaList'));
+        return $ormawaList;
 }
 }
 

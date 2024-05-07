@@ -53,7 +53,7 @@ class UnggahLegalitas
         // Daftar nama file yang diinginkan
         $listFile = [
             'proposal_legalitas',
-            'AD/ART',
+            'AD_ART',
             'surat_permohonan',
             'biodata_pembina',
             'struktur_organisasi',

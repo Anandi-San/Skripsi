@@ -39,5 +39,9 @@ class Proposal_Kegiatan extends Model
     {
         return $this->belongsTo(SKlegalitas::class, 'id_SK_legalitas');
     }
+    public function proposalKegiatan()
+    {
+        return $this->hasOne(Proposal_Kegiatan::class, 'id_SK_legalitas');
+    }
 }
 

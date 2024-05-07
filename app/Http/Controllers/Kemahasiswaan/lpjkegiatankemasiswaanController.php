@@ -17,9 +17,9 @@ class lpjkegiatankemasiswaanController extends Controller
     public function index()
     {
         $lpjkegiatan = $this->lpjkegiatanService->index();
-        
         return view('Kemahasiswaan.lpjKegiatan.index', compact('lpjkegiatan'));
     }
+
 
     /**
      * Show the form for creating a new resource.

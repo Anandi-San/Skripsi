@@ -15,10 +15,11 @@ return new class extends Migration
             $table->id();
             $table->foreignId('id_pengajuan_legalitas');
             $table->foreignId('id_proposal_kegiatan');
-            $table->float('saldo');
-            $table->string('dana_terpakai');
-            $table->enum('status', ['tidak_berhasil', 'berhasil']);
-            $table->text('catatan');
+            $table->foreignId('id_keterangan_pembayaran');
+            $table->string('jumlah_dana')->nullable();
+            $table->string('saldo')->nullable();
+            $table->enum('parameter_keberhasilan', ['tidak berhasil', 'berhasil'])->nullable();
+            $table->text('catatan')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

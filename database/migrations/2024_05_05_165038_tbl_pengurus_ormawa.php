@@ -18,9 +18,9 @@ return new class extends Migration
             $table->string('ketua_ormawa');
             $table->string('visi');
             $table->text('misi');
-            $table->date('kabinet_masa_mulai');
-            $table->date('kabinet_masa_selesai');
-            $table->text('logo_kabinet');
+            $table->date('kabinet_masa_mulai')->nullable();
+            $table->date('kabinet_masa_selesai')->nullable();
+            $table->text('logo_kabinet')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

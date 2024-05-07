@@ -1,6 +1,12 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Kemahasiswaan\PDFLpjKegiatanController;
+use App\Http\Controllers\Kemahasiswaan\PDFpengajuanController;
+use App\Http\Controllers\Kemahasiswaan\PDFproposalKegiatanController;
+use App\Http\Controllers\kemahasiswaan\PDFskLegalitasController;
+use App\Http\Controllers\Kemahasiswaan\UpdateProfilController;
+use App\Http\Controllers\Pembina\UpdateProfilPembinaController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\Auth\LoginController;
@@ -81,8 +87,12 @@ Route::prefix('/ormawa')->middleware('auth')->group(function () {
 
     
     //UpdateDataOrmawa
-    Route::get('/update', [UpdateDataOrmawaController::class, 'index'])->name('ormawa.update');
-    Route::get('/update/kegiatan', [UpdateDataOrmawaController::class, 'indexKegiatan'])->name('updatedataKegiatan');
+    Route::get('/profil', [UpdateDataOrmawaController::class, 'index'])->name('ormawa.update');
+    Route::post('/update/profil', [UpdateDataOrmawaController::class, 'updateOrmawa'])->name('ormawa.update.ormawa');
+    Route::get('/profil/Kepengurusan', [UpdateDataOrmawaController::class, 'indexKepengurusan'])->name('index.Kepengurusan');
+    Route::post('/update/Kepengurusan', [UpdateDataOrmawaController::class, 'updateKepengurusan'])->name('update.Kepengurusan');
+    Route::get('/profil/Kegiatan', [UpdateDataOrmawaController::class, 'indexKegiatan'])->name('index.Kegiatan');
+    // Route::post('/update/Kegiatan', [UpdateDataOrmawaController::class, 'updateKegiatan'])->name('update.Kegiatan');
 });
 
 Route::prefix('/pembina')->middleware('auth')->group(function () {
@@ -91,16 +101,27 @@ Route::prefix('/pembina')->middleware('auth')->group(function () {
     Route::resource('/LPJKegiatanPembina', LpjKegiatanPembinaController::class);
     Route::resource('/Ormawa', ViewOrmawaController::class);
     Route::resource('/SKlegalitas', SKlegalitasPembinaController::class);
+    Route::resource('/edit-profil-pembina', UpdateProfilPembinaController::class);
+    Route::patch('/update-profil-pembina', [UpdateProfilPembinaController::class, 'updateProfil'])->name('updateProfilPembina');
 });
 
 Route::prefix('/kemahasiswaan')->middleware('auth')->group(function () {
     Route::get('/beranda', [BerandaKemahasiswaanController::class, 'index'])->name('kemahasiswaan');
     Route::resource('/pengajuanlegalitas',pengajuanlegalitaskemahasiswaanController::class);
+    Route::get('/edit_pengajuanlegalitas/{id}/{type}', [PDFpengajuanController::class, 'edit'])->name('edit_pengajuanpdf');
     Route::resource('/proposalKegiatan',proposalkegiatankemahasiswaanController::class);
+    Route::get('/edit_proposalkegiatan/{id}/{type}', [PDFproposalKegiatanController::class, 'edit'])->name('edit_proposalpdf');
     Route::resource('/LPJKegiatan', lpjkegiatankemasiswaanController::class);
+    Route::get('/edit_LPJKegiatan/{id}/{type}', [PDFLpjKegiatanController::class, 'edit'])->name('edit_LPJkegiatanpdf');
     Route::resource('/editOrmawa', ormawakemahasiswaanController::class);
     Route::resource('/Pembina', pembinakemahasiswaanController::class);
     Route::resource('/editSKlegalitas', sklegalitaskemahasiswaanController::class); 
+    Route::get('/edit_Sklegalitas/{id}/{type}', [PDFskLegalitasController::class, 'edit'])->name('edit_SKlegalitaspdf');
+    Route::resource('/editProfil', UpdateProfilController::class);
+    // Definisikan rute untuk metode uploadLogo
+    Route::post('/editProfil/uploadLogo', [UpdateProfilController::class, 'uploadLogo'])->name('updateProfil.uploadLogo');
+    Route::delete('/editProfil/deleteLogo', [UpdateProfilController::class, 'deleteLogo'])->name('updateProfil.deleteLogo');
+    Route::patch('/update-profil', [UpdateProfilController::class, 'updateProfil'])->name('updateProfil');
     Route::resource('/laporanakhir', laporanAKhirController::class);
 });
 

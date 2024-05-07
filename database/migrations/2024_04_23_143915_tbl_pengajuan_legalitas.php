@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('id_ormawa_pembina');
             $table->foreignId('id_kemahasiswaan')->nullable();
             $table->string('proposal_legalitas')->nullable();
-            $table->string('AD/ART')->nullable();
+            $table->string('AD_ART')->nullable();
             $table->string('surat_permohonan')->nullable();
             $table->text('daftar_nama_kepengurusan')->nullable();
             $table->string('biodata_pembina')->nullable();

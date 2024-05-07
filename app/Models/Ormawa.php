@@ -12,7 +12,13 @@ class Ormawa extends Model
 
     protected $table = 'tbl_ormawa';
 
-    protected $guarded = [];
+    protected $guarded = [
+        'nama_ormawa',
+        'jenis_ormawa',
+        'singkatan',
+        'jurusan',
+        'logo_ormawa',
+    ];
 
     public function pengguna()
     {

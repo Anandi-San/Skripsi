@@ -17,9 +17,9 @@ class pembinakemahasiswaanController extends Controller
 
     public function index()
     {
-        $pembina = $this->pembinaService->index();
+        $pembinaList = $this->pembinaService->index();
         
-        return view('Kemahasiswaan.pembina.index', compact('pembina'));
+        return view('Kemahasiswaan.pembina.index', compact('pembinaList'));
     }
 
     /**
