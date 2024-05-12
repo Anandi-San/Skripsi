@@ -14,7 +14,6 @@ class MonitoringKegiatan extends Model
     protected $table = 'tbl_monitoring_kegiatan';
 
     protected $fillable = [
-        'id_pengajuan_legalitas',
         'id_proposal_kegiatan',
         'id_keterangan_pembayaran',
         'jumlah_dana',
@@ -22,11 +21,6 @@ class MonitoringKegiatan extends Model
         'parameter_keberhasilan',
         'catatan',
     ];
-
-    public function pengajuanLegalitas()
-    {
-        return $this->hasMany(PengajuanLegalitas::class, 'id_pengajuan_legalitas');
-    }
 
     public function proposalKegiatan()
     {

@@ -2,6 +2,7 @@
 
 @section('content')
 <div class="sm:ml-36 ml-2 sm:mt-10 mt-2 ">
+    @foreach ($data['monitoringKegiatan'] as $proposalId => $monitoringKegiatans)
     <div class="flex flex-col w-11/12 justify-start mx-auto">
         <div class="flex flex-row">
             <p class="font-bold text-xl pb-2 md:pb-4 text-customBlack">Update Kegiatan</p>
@@ -9,20 +10,26 @@
         <div class="flex flex-col mr-2">
             <label for="nama-kegiatan" class="font-bold text-lg text-customBlack mb-2">Nama Kegiatan:</label>
             <select id="nama-kegiatan" name="nama-kegiatan" class="sm:w-full border border-customBlack bg-white px-4 py-2 focus:outline-none focus:border-customBlue">
-                <option value="kegiatan1">Kegiatan 1</option>
-                <option value="kegiatan2">Kegiatan 2</option>
-                <option value="kegiatan3">Kegiatan 3</option>
+                @foreach ($data['proposalKegiatanOptions'] as $proposalId => $namaKegiatan)
+                <option value="{{ $proposalId }}">{{ $namaKegiatan }}</option>
+                @endforeach
             </select>
         </div>
         <div class="flex flex-col sm:flex-row sm:space-x-10">
             <div class="flex flex-col mr-2 mt-4">
-                <label for="jumlah-dana" class="font-bold text-lg text-customBlack mb-2">Jumlah Dana (Rp):</label>
-                <input type="text" id="jumlah-dana" name="jumlah-dana" value="Rp. 20000000" class="sm:w-11/12 border border-gray-300 px-4 py-2 focus:outline-none focus:border-customBlue" readonly>
+                <label for="jumlah-dana-{{ $proposalId }}" class="font-bold text-lg text-customBlack mb-2">Jumlah Dana (Rp):</label>
+                @foreach ($monitoringKegiatans as $monitoringKegiatan)
+                    <!-- Access the properties of each object in the array -->
+                    <input type="text" id="jumlah-dana-{{ $proposalId }}" name="jumlah-dana[]" value="Rp. {{ number_format($monitoringKegiatan['saldo'], 2, ',', '.') }}" class="sm:w-11/12 border border-gray-300 px-4 py-2 focus:outline-none focus:border-customBlue" readonly>
+                @endforeach
             </div>
             <div class="flex flex-col mr-2 mt-4">
-            <label for="dana-digunakan" class="font-bold text-lg text-customBlack mb-2">Dana yang Digunakan:</label>
-            <input type="text" id="dana-digunakan" placeholder="Rp." name="dana-digunakan" class="sm:w-11/12 border border-gray-300 px-4 py-2 focus:outline-none focus:border-customBlue">
-        </div>
+                <label for="dana-digunakan-{{ $proposalId }}" class="font-bold text-lg text-customBlack mb-2">Dana yang Digunakan:</label>
+                @foreach ($monitoringKegiatans as $monitoringKegiatan)
+                    <!-- Access the properties of each object in the array -->
+                    <input type="text" id="dana-digunakan-{{ $proposalId }}" name="dana-digunakan[]" value="Rp. {{ number_format($monitoringKegiatan['jumlah_dana'], 2, ',', '.') }}" class="sm:w-11/12 border border-gray-300 px-4 py-2 focus:outline-none focus:border-customBlue" readonly>
+                @endforeach
+            </div>
         </div>
         
         <!-- Bagian untuk input jenis pembayaran -->
@@ -30,7 +37,7 @@
             <label class="font-bold text-lg text-customBlack mb-2">Pembayaran:</label>
             
             <!-- Input box pertama -->
-            <div class="flex sm:flex-row space-x-4" id="payment-box-1">
+            <div class="flex sm:flex-row space-x-4" id="payment-box-{{ $proposalId }}">
                 <input type="text" name="jenis-pembayaran[]" placeholder="Jenis Pembayaran" class="sm:w-1/2 border border-gray-300 px-4 py-2 focus:outline-none focus:border-customBlue">
                 <input type="number" name="jumlah-pembayaran[]" placeholder="Jumlah Pembayaran (Rp)" class="sm:w-1/2 border border-gray-300 px-4 py-2 focus:outline-none focus:border-customBlue">
                 <input type="date" name="tanggal-pembayaran[]" placeholder="Tanggal Pembayaran" class="sm:w-1/2 border border-gray-300 px-4 py-2 focus:outline-none focus:border-customBlue">
@@ -61,6 +68,7 @@
             <button class="sm:w-1/3 w-full bg-customBlue text-white font-bold py-4 px-4 rounded-lg">Simpan</button>
         </div>
     </div>
+    @endforeach
 </div>
 
 @include('Ormawa.Components.footer')

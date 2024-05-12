@@ -60,7 +60,20 @@
             </div>
         </div>
 
-        <script>
+        <div class="p-6 bg-customWhite border border-gray-400 rounded-lg mr-24 h-72 flex flex-col">
+            <div class="flex items-center mt-2">
+                <i class="fa-solid fa-circle-check fa-2x text-customBlue mr-4"></i>
+                <div class="flex flex-row justify-between w-full mr-24">
+                    <p class="text-customBlack">Pembayaran Panggung</p>
+                    <p class="text-customBlack">Rp. 2.500.000</p>
+                    <p class="text-customBlack">10/11/2023</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    @include('Pembina.Components.footer2')
+
+    <script>
             document.addEventListener('DOMContentLoaded', function() {
                 var menuButton = document.getElementById('menu-button');
                 var dropdownMenu = document.getElementById('dropdown-menu');
@@ -76,17 +89,4 @@
                 });
             });
         </script>
-
-        <div class="p-6 bg-customWhite border border-gray-400 rounded-lg mr-24 h-72 flex flex-col">
-            <div class="flex items-center mt-2">
-                <i class="fa-solid fa-circle-check fa-2x text-customBlue mr-4"></i>
-                <div class="flex flex-row justify-between w-full mr-24">
-                    <p class="text-customBlack">Pembayaran Panggung</p>
-                    <p class="text-customBlack">Rp. 2.500.000</p>
-                    <p class="text-customBlack">10/11/2023</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    @include('Pembina.Components.footer')
 @endsection

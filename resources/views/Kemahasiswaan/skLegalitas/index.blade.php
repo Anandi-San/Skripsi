@@ -1,10 +1,11 @@
 @extends('Kemahasiswaan.Components.layout')
 <title>SK Legalitas</title>
 
-@section('content')<div class="flex flex-col items-center justify-center my-8 ml-4 md:ml-16 lg:ml-36 mr-4">
-    <div class="flex items-center justify-between bg-blue-500 text-white w-full md:w-full h-20 shadow-lg">
+@section('content')
+<div class="flex flex-col items-center justify-center mt-32 ml-4 md:ml-16 lg:ml-36 mr-4">
+    <div class="flex items-center justify-between bg-blue-500 text-white w-full md:w-9/12 h-20 shadow-lg">
         <p class="text-base md:text-lg font-bold ml-4">Daftar SK Legalitas</p>
-        <div class="flex items-center bg-white rounded-lg px-4 py-2 relative h-10 mr-4">
+        <div class="flex items-center bg-white rounded-lg px-4 py-2 relative h-10 mr-4 ">
             <span class="absolute left-0 flex items-center justify-center w-10 h-10">
                 <i class="fas fa-search text-customBlack"></i>
             </span>
@@ -17,7 +18,7 @@
             />
         </div>
     </div>
-        <div class="bg-customWhite w-full md:w-full shadow-md mt-2 border border-gray-500 overflow-x-auto">
+        <div class="bg-customWhite w-full md:w-9/12 shadow-md mt-2 border border-customBlack overflow-x-auto">
             <div class="flex flex-row justify-between p-2 md:p-4">
                 <p class="text-center w-1/8 text-xs md:text-sm mr-1">#</p>
                 <p class="text-center w-1/12 text-xs md:text-sm mr-1">Nama Ormawa</p>
@@ -30,8 +31,9 @@
                 <p class="text-center w-1/12 text-xs md:text-sm mr-1">Operasi</p>
             </div>
         </div>
-            <div class="container bg-customWhite w-full md:w-full ">
+            <div class="container bg-customWhite w-full md:w-9/12 ">
                 @foreach ($skLegalitas as $index => $legalitas)
+                <div class=" bg-customWhite w-full md:w-full shadow-md border border-customBlack overflow-x-auto  p-4">
                 <div class="flex flex-row justify-between p-2 md:p-4">
                     <p class="text-center w-1/8 text-xs md:text-sm mr-1">{{ $index + 1 }}</p>
                     <p class="text-center w-1/12 text-xs md:text-sm mr-1">{{ $legalitas->pengajuanLegalitas->ormawaPembina->ormawa->nama_ormawa }}</p>
@@ -62,7 +64,7 @@
                         </a>
                     </p>
                     
-                    
+                    </div>
                 </div>
                 @endforeach
             </div>

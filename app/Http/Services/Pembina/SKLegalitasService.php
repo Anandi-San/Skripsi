@@ -37,6 +37,7 @@ class SKLegalitasService {
                         'tanggal_berlaku_mulai' => $skLegalitas->tanggal_berlaku_mulai,
                         'tanggal_berlaku_selesai' => $skLegalitas->tanggal_berlaku_selesai,
                         'file_sk' => $skLegalitas->file_SK,
+                        'status' => $skLegalitas->status,
                         // Tambahkan kolom lain sesuai kebutuhan
                     ];
                 }

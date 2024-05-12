@@ -19,9 +19,9 @@ class BerandaKemahasiswaanController extends Controller
 
     public function index()
     {
-        $userId = Auth::id();
-        $kemahasiswaan = $this->berandakemahasiswaanService->getkemahasiswaanByUserId($userId);
+        
+        $dataCounts = $this->berandakemahasiswaanService->getCounts();
 
-        return view('Kemahasiswaan.index', compact('kemahasiswaan'));
+        return view('Kemahasiswaan.index', ['dataCounts' => $dataCounts]);
     }
 }

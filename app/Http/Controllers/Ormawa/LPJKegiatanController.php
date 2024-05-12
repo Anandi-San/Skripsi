@@ -16,6 +16,11 @@ class LPJKegiatanController extends Controller
         $this->pengajuanLPJKegiatan = $pengajuanLPJKegiatan;
     }
 
+    public function index()
+    {
+    return $this->pengajuanLPJKegiatan->index();
+    }
+
     public function unggah()
     {
     return $this->pengajuanLPJKegiatan->unggah();

@@ -18,10 +18,10 @@ class UpdateDataOrmawaController extends Controller
 
     public function index()
     {
-        $ormawa = $this->updateDataOrmawa->index();
-        // dd($ormawa);
+        $profil = $this->updateDataOrmawa->index()->first();
+        // dd($profil);
 
-        return view('Ormawa/UpdateOrmawa/updateDetail', compact('ormawa'));
+        return view('Ormawa/UpdateOrmawa/updateDetail', compact('profil'));
     }
 
     public function updateOrmawa(Request $request)
@@ -48,7 +48,12 @@ class UpdateDataOrmawaController extends Controller
 
     public function indexKegiatan()
     {
-    return $this->updateDataOrmawa->indexKegiatan();
+    // Panggil fungsi indexKegiatan dari service
+        $data = $this->updateDataOrmawa->indexKegiatan();
+
+        // Return view dengan data yang diteruskan
+        return view('Ormawa/UpdateOrmawa/updateKegiatan', compact('data'));
+
     }
     // public function updateKegiatan()
     // {

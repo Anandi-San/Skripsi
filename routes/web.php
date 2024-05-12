@@ -7,6 +7,8 @@ use App\Http\Controllers\Kemahasiswaan\PDFproposalKegiatanController;
 use App\Http\Controllers\kemahasiswaan\PDFskLegalitasController;
 use App\Http\Controllers\Kemahasiswaan\UpdateProfilController;
 use App\Http\Controllers\Pembina\UpdateProfilPembinaController;
+use App\Http\Controllers\SuperAdmin\EditKemahasiswaanController;
+use App\Http\Controllers\SuperAdmin\HistoryKemahasiswaanController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\Auth\LoginController;
@@ -65,16 +67,19 @@ Route::prefix('/ormawa')->middleware('auth')->group(function () {
     route::get('/legalitas/menunggu', [PengajuanLegalitasController::class, 'waitRevision'])->name('waitingrevision');
     route::get('/legalitas/daftarRevisi', [PengajuanLegalitasController::class, 'listRevisi'])->name('listRevisi');
     route::get('/legalitas/revision', [PengajuanLegalitasController::class, 'revision'])->name('revision');
+    route::patch('/legalitas/revisi', [PengajuanLegalitasController::class, 'update'])->name('revisi.pengajuan');
+
     // Proposal Kegiatan
     Route::get('/proposalKegiatan', [ProposalKegiatanOrmawaController::class, 'unggah'])->name('proposalKegiatan'); 
     Route::post('/proposalKegiatan/upload', [ProposalKegiatanOrmawaController::class, 'store'])->name('proposalkegiatan.upload');
     Route::get('/proposalKegiatan/menunggu', [ProposalKegiatanOrmawaController::class, 'menunggu'])->name('menungguProposalKegiatan'); 
     Route::get('/proposalKegiatan/daftarRevisi', [ProposalKegiatanOrmawaController::class, 'listRevisi'])->name('ListRevisiproposalKegiatan'); 
-    Route::get('/proposalKegiatan/Revisi', [ProposalKegiatanOrmawaController::class, 'Revisi'])->name('RevisiproposalKegiatan'); 
+    Route::get('/proposalKegiatan/Revisi', [ProposalKegiatanOrmawaController::class, 'Revisi'])->name('RevisiproposalKegiatan');
+    
 
     //LPJ Kegiatan
-    Route::get('/LPJKegiatan', [LPJKegiatanController::class, 'unggah'])->name('LPJKegiatan');
-    // Route::get('/LPJKegiatan/upload', [LPJKegiatanController::class, 'store'])->name('LPJkegiatan.upload');
+    Route::get('/LPJKegiatan/index', [LPJKegiatanController::class, 'index'])->name('LPJkegiatan.beranda');
+    Route::get('/LPJKegiatan/{id}/unggah', [LPJKegiatanController::class, 'unggah'])->name('LPJKegiatan');
     Route::post('/LPJKegiatan/upload', [LPJKegiatanController::class, 'store'])->name('lpjkegiatan.upload');
     Route::get('/LPJKegiatan/menunggu', [LPJKegiatanController::class, 'menunggu'])->name('menungguLPJKegiatan'); 
     Route::get('/LPJKegiatan/daftarRevisi', [LPJKegiatanController::class, 'listRevisi'])->name('ListRevisiLPJKegiatan'); 
@@ -125,9 +130,18 @@ Route::prefix('/kemahasiswaan')->middleware('auth')->group(function () {
     Route::resource('/laporanakhir', laporanAKhirController::class);
 });
 
+Route::prefix('/superadmin')->middleware('auth')->group(function () {
+    Route::get('/beranda', [BerandaSuperAdminController::class, 'index'])->name('superadmin');
+    Route::get('/profil-kemahasiswaan', [EditKemahasiswaanController::class, 'index'])->name('profil.kemahasiswaan');
+    Route::get('/history-kemahasiswaan', [EditKemahasiswaanController::class, 'indexHistory'])->name('history.kemahasiswaan');
+    Route::get('/edit-kemahasiswaan', [EditKemahasiswaanController::class, 'edit'])->name('edit.kemahasiswaan');
+    Route::post('/buat-kemahasiswaan', [EditKemahasiswaanController::class, 'store'])->name('create.kemahasiswaan');
+    Route::patch('/edit-kemahasiswaan/{id}/nonaktifkan', [EditKemahasiswaanController::class, 'nonaktifkan'])->name('kemahasiswaan.nonaktifkan');
+});
+
 
 Route::middleware(['auth'])->group(function (){
     Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
-    Route::get('/superadmin', [BerandaSuperAdminController::class, 'index'])->name('superadmin');
+    // Route::get('/superadmin', [BerandaSuperAdminController::class, 'index'])->name('superadmin');
 });

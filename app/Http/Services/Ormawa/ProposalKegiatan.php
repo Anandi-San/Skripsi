@@ -8,12 +8,42 @@ use Illuminate\Support\Facades\Auth;
 
 class ProposalKegiatan {
 
-    public function unggah()
+    public function unggah($proposal)
     {
-        $data = [
-            'content' => 'ormawa/proposalKegiatan/index',
-        ];
-        return view('Ormawa/ProposalKegiatan/unggah', $data);
+    $user = Auth::user();
+    
+
+    // Cek apakah pengguna merupakan pembina ormawa
+    $ormawaPembina = $user->ormawaPembina->first();
+    // dd($ormawaPembina);
+
+
+    // Dapatkan pengajuan legalitas yang terkait dengan pengguna
+    $legalitas = $ormawaPembina->pengajuanLegalitas->first();
+    // dd($legalitas);
+    
+    $pengajuanLegalitas = $legalitas->skLegalitas->first();
+    // dd($pengajuanLegalitas);
+
+    $skLegalitas = $pengajuanLegalitas->proposalKegiatan;
+    
+    if ($skLegalitas) {
+        // Jika pengajuan legalitas sudah ada, periksa statusnya
+        if ($legalitas->status === 'Menunggu') {
+            return redirect()->route('menungguProposalKegiatan');
+        } elseif ($legalitas->status === 'Revisi Kemahasiswaan') {
+            // Jika pengajuan legalitas sudah disetujui, arahkan ke halaman tertentu
+            return redirect()->route('ListRevisiproposalKegiatan');
+        } elseif ($legalitas->status === 'Telah Dorevisi') {
+            return redirect()->route('RevisiproposalKegiatan');
+    }
+}
+
+    // Jika belum mengunggah, tampilkan halaman unggah legalitas
+    $data = [
+        'proposal' => $proposal,
+    ];
+    return view('Ormawa/ProposalKegiatan/unggah', $data);
     }
 
     public function menunggu()
@@ -41,6 +71,7 @@ class ProposalKegiatan {
     }
     public function store(Request $request)
 {
+    $user = Auth::user();
     // Validasi input
     $request->validate([
         'kegiatanTextArea-0' => 'required|string',
@@ -59,7 +90,6 @@ class ProposalKegiatan {
         // Aturan validasi untuk input file
         'files.*' => 'required|file|max:5120',
     ]);
-    // dd($request);
 
     // Simpan data ke dalam variabel
     $textData = [];
@@ -118,15 +148,32 @@ class ProposalKegiatan {
             }
         }
     }
+    $sk_legalitas = null;
+    foreach ($user->ormawa as $ormawa) {
+        foreach ($ormawa->ormawaPembina as $ormawaPembina) {
+            // Dapatkan pengajuan legalitas untuk ormawa pembina ini
+            $pengajuanLegalitas = $ormawaPembina->pengajuanLegalitas()->latest()->first();
+
+            // Pastikan pengajuan legalitas ditemukan
+            if ($pengajuanLegalitas) {
+                // Dapatkan SK legalitas terkait
+                $sk_legalitas = $pengajuanLegalitas->skLegalitas;
+                // Jika SK legalitas ditemukan, hentikan iterasi
+                if ($sk_legalitas) {
+                    break 2;
+                }
+            }
+        }
+    }
 
     // Masukkan data teks dan file ke dalam model Proposal_Kegiatan
-    $sk_legalitas = Proposal_Kegiatan::updateOrCreate(
-        ['id_SK_legalitas' => 1], // Tentukan kondisi pencarian
+    $proposal_kegiatan = Proposal_Kegiatan::updateOrCreate(
+        ['id_SK_legalitas' => $sk_legalitas->id], // Tentukan kondisi pencarian
         array_merge($textData, $fileData)
     );
 
     // Simpan model untuk menyimpan perubahan ke database
-    $sk_legalitas->save();
+    $proposal_kegiatan->save();
 
     // Arahkan ke halaman berikutnya
     return redirect()->route('waitingrevision');

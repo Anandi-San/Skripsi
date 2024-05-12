@@ -2,11 +2,29 @@
 
 namespace App\Http\Services\Ormawa;
 
+use App\Models\Proposal_Kegiatan;
 use Illuminate\Http\Request;
 use App\Models\LPJkegiatan;
+use Illuminate\Support\Facades\Auth;
 
 class PengajuanLPJkegiatan {
 
+    public function index()
+    {
+        $userId = Auth::user()->id;
+
+    // Dapatkan data proposal kegiatan yang terkait dengan pengguna yang sedang login
+    $proposalKegiatan = Proposal_Kegiatan::whereHas('skLegalitas.pengajuanLegalitas.ormawaPembina.ormawa.pengguna', function ($query) use ($userId) {
+        $query->where('id', $userId);
+    })->get();
+
+    // Kemudian kembalikan data ke blade
+    $data = [
+        'proposalKegiatan' => $proposalKegiatan,
+    ];
+
+    return view('Ormawa/LpjKegiatan/index', $data);
+    }
     public function unggah()
     {
         $data = [
@@ -62,6 +80,8 @@ class PengajuanLPJkegiatan {
             'files.*' => 'required|file|max:5120',
         ]);
         // dd($request);
+
+        $proposalId = $request->input('proposal_id');
 
         // Simpan data ke dalam variabel
         $textData = [];
@@ -125,7 +145,7 @@ class PengajuanLPJkegiatan {
 
         // Masukkan data teks dan file ke dalam model Proposal_Kegiatan
         $lpjKegiatan = LPJkegiatan::updateOrCreate(
-            ['id_proposal_kegiatan' => 1], // Tentukan kondisi pencarian
+            ['id_proposal_kegiatan' => $proposalId], // Tentukan kondisi pencarian
             array_merge($textData, $fileData)
         );
 

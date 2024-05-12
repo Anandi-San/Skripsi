@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class SKlegalitas extends Model
 {
     use HasFactory, SoftDeletes;
-    protected $table = 'tbl_sk_legalitas';
+    protected $table = 'tbl_SK_legalitas';
 
     protected $fillable = [
         'id_pengajuan_legalitas',
@@ -21,8 +21,11 @@ class SKlegalitas extends Model
         'status',
     ];
 
-    public function pengajuanLegalitas()
-    {
+    public function pengajuanLegalitas() {
         return $this->belongsTo(PengajuanLegalitas::class, 'id_pengajuan_legalitas');
     }
+    public function proposalKegiatan() {
+    return $this->hasMany(Proposal_Kegiatan::class, 'id_SK_legalitas');
+    }
+
 }

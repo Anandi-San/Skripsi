@@ -17,22 +17,14 @@ class UpdateDataOrmawa {
     public function index()
     {
         // Mendapatkan ID pengguna yang sedang login
-        $userId = Auth::id();
-
-        // Mengambil data pengguna yang sedang login
-        $pengguna = Pengguna::findOrFail($userId);
-
-        // Mengambil data Ormawa yang terkait dengan pengguna yang sedang login
-        $ormawa = $pengguna->ormawa()->first();
-
-        // Periksa apakah data Ormawa ditemukan
-        if (!$ormawa) {
-            // Jika tidak ditemukan, berikan respons atau redirect sesuai kebutuhan
-            return response()->json(['error' => 'Data Ormawa tidak ditemukan'], 404);
-        }
-        // dd($ormawa);
-
-        return $ormawa;
+        $user = Auth::user();
+        
+        // Dapatkan data kemahasiswaan terkait pengguna
+        $profil = $user->ormawa;
+        // dd($profil);
+        
+        // Kembalikan data kemahasiswaan
+        return $profil;
     }
     public function updateOrmawa(Request $request)
     {
@@ -199,37 +191,70 @@ if ($request->input('action') === 'delete') {
     return redirect()->back()->with('success', 'Data Pengurus Ormawa berhasil diperbarui.');
 }
 
+// service
 public function indexKegiatan()
 {
+    // Ambil ID pengguna saat ini
     $userId = Auth::id();
+    
+    // Ambil pengguna berdasarkan ID
     $user = Pengguna::find($userId);
-    $ormawa = $user->ormawa->first();
 
+    // Dapatkan Ormawa yang terkait dengan pengguna
+    $ormawa = $user->ormawa->first();
+    // dd($ormawa);
+
+    // Jika tidak ada data Ormawa, tampilkan pesan kesalahan
     if (!$ormawa) {
         dd('Tidak ada data Ormawa ditemukan');
     }
 
+    // Dapatkan relasi OrmawaPembina yang terkait dengan Ormawa
     $ormawaPembina = $ormawa->ormawaPembina;
 
+    // Array untuk menyimpan data proposal kegiatan
+    $proposalKegiatanOptions = [];
+
+    // Array untuk menyimpan data monitoring kegiatan
     $monitoringKegiatan = [];
 
-    foreach ($ormawaPembina->pengajuanLegalitas as $pengajuan) {
-        $monitoring = MonitoringKegiatan::where('id_pengajuan_legalitas', $pengajuan->id)
-                                        ->with('kegiatanOrmawa')
-                                        ->get();
+    // Iterasi melalui setiap OrmawaPembina untuk mengumpulkan data proposal kegiatan dan monitoring kegiatan
+    foreach ($ormawaPembina as $pembina) {
+        // Iterasi melalui setiap pengajuan legalitas
+        foreach ($pembina->pengajuanLegalitas as $pengajuan) {
+            // Muat SKLegalitas yang terkait dengan pengajuan
+            $pengajuan->load('skLegalitas.proposalKegiatan.monitoringKegiatan');
+            // Iterasi melalui setiap SK Legalitas
+            if ($pengajuan->skLegalitas) {
+                $skLegalitas = $pengajuan->skLegalitas;
 
-        // Gabungkan data monitoring kegiatan
-        foreach ($monitoring as $mon) {
-            $monitoringKegiatan[] = $mon;
+                // Iterasi melalui setiap Proposal Kegiatan
+                foreach ($skLegalitas->proposalKegiatan as $proposal) {
+                    // Tambahkan nama proposal kegiatan ke dalam array opsi
+                    $proposalKegiatanOptions[$proposal->id] = $proposal->nama_kegiatan;
+
+                    // Iterasi melalui setiap Monitoring Kegiatan
+                    foreach ($proposal->monitoringKegiatan as $monitoring) {
+                        // Tambahkan Monitoring Kegiatan ke dalam array
+                        $monitoringKegiatan[$proposal->id][] = $monitoring;
+                    }
+                }
+            }
         }
     }
 
+    // Siapkan data yang akan dikirim ke view
     $data = [
+        'proposalKegiatanOptions' => $proposalKegiatanOptions,
         'monitoringKegiatan' => $monitoringKegiatan
     ];
+    // dd($data);
 
-    return view('ormawa.update.indexKegiatan', $data);
+    // Return view dengan data
+    return $data;
 }
+
+
 
     // public function updateKegiatan()
     // {

@@ -23,7 +23,7 @@ class UpdateProfilPembinaController extends Controller
         $profil = $this->updateprofilPembinaService->index()->first();
         // dd($profil);
 
-        return view('Pembina/EditProfil/index', compact('profil'));
+        return view('Pembina/Editprofil/index', compact('profil'));
     }
 
     // public function uploadLogo(Request $request)

@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('tbl_monitoring_kegiatan', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_pengajuan_legalitas');
             $table->foreignId('id_proposal_kegiatan');
             $table->foreignId('id_keterangan_pembayaran');
             $table->string('jumlah_dana')->nullable();

@@ -25,6 +25,13 @@ class UpdateProfilController extends Controller
 
         return view('Kemahasiswaan/EditProfil/index', compact('profil'));
     }
+    public function getLogoPath()
+    {
+        $logoPath = $this->updateprofilService->getLogoPath();
+
+        // Mengirim URL atau path gambar ke view
+        return view('Kemahasiswaan.Components.layout', ['logoPath' => $logoPath]);
+    }
 
     public function uploadLogo(Request $request)
     {
@@ -92,54 +99,4 @@ class UpdateProfilController extends Controller
     // Jika tidak ada profil yang ditemukan
     return redirect()->route('editProfil.index')->with('error', 'Tidak ada profil yang ditemukan');
 }
-
-
-    
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
 }

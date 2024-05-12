@@ -44,4 +44,8 @@ class PengajuanLegalitasController extends Controller
         // $unggahLegalitasService = new UnggahLegalitas();
         // $unggahLegalitasService->store($request, $someStep);
     }
+    public function update(Request $request)
+    {
+        return $this->unggahLegalitas->update($request);  
+    }
 }

@@ -32,7 +32,7 @@ return new class extends Migration
             $table->string('lampiran2')->nullable();
             $table->string('lampiran3')->nullable();
             $table->string('sampul_belakang');
-            $table->enum('status', ['belum_unggah','menunggu', 'revisi', 'terkirim', 'disetujui']);
+            $table->enum('status', ['Belum Unggah','Menunggu', 'Revisi Pembina', 'Telah Direvisi', 'Disetujui Pembina', 'Revisi Kemahasiswaan', 'Telah Direvisi Kemahasiswaan', 'Disetujui'])->default('Belum Unggah')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

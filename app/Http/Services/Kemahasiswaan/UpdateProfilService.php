@@ -10,14 +10,14 @@ class UpdateProfilService {
 
     public function index()
     {
-    $user = Auth::user();
-    
-    // Dapatkan data kemahasiswaan terkait pengguna
-    $profil = $user->kemahasiswaan;
-    dd($profil);
-    
-    // Kembalikan data kemahasiswaan
-    return $profil;
+        $user = Auth::user();
+        
+        // Dapatkan data kemahasiswaan terkait pengguna
+        $profil = $user->kemahasiswaan;
+        // dd($profil);
+        
+        // Kembalikan data kemahasiswaan
+        return $profil;
     }
 
     public function updateLogo(Kemahasiswaan $profil, UploadedFile $file)
@@ -26,7 +26,8 @@ class UpdateProfilService {
         $user = Auth::user();
         
         // Dapatkan data kemahasiswaan terkait pengguna
-        $profil = $user->kemahasiswaan;
+        $profil = $user->kemahasiswaan->first();
+        // dd($profil);
         
         // Hapus logo lama jika ada
         if ($profil->logo_kemahasiswaan) {
@@ -43,6 +44,7 @@ class UpdateProfilService {
         
         // Perbarui profil dengan path logo baru
         $profil->logo_kemahasiswaan = $filePath;
+        // dd($profil->logo_kemahasiswaan);
         $profil->save();
     }
     

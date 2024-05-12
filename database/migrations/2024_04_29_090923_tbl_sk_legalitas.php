@@ -19,7 +19,7 @@ return new class extends Migration
             $table->date('tanggal_berlaku_mulai')->nullable();
             $table->date('tanggal_berlaku_selesai')->nullable();
             $table->string('file_SK')->nullable();
-            $table->enum('status', ['belum_terkirim', 'terkirim']);
+            $table->enum('status', ['Tidak Aktif', 'Aktif'])->default('Tidak Aktif')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

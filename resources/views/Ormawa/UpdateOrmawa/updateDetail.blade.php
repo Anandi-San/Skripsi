@@ -11,8 +11,8 @@
             </div>
             <div class="flex flex-row items-center justify-start mx-auto w-11/12">
                 <div class="w-28 md:w-40 h-28 md:h-40 rounded-full bg-gray-300 mb-4 relative">
-                    @if($ormawa->logo_ormawa)
-                        <img src="{{ asset($ormawa->logo_ormawa) }}" class="absolute inset-0 w-full h-full object-cover rounded-full">
+                    @if($profil->logo_ormawa)
+                        <img src="{{ asset($profil->logo_ormawa) }}" class="absolute inset-0 w-full h-full object-cover rounded-full">
                     @endif
                 </div>
                 <div class="flex flex-col ml-4">
@@ -27,11 +27,11 @@
         <div class="mt-4 flex flex-col md:flex-row h-auto md:h-14 w-11/12 mx-auto mb-8 space-x-0 md:space-x-10">
             <div class="flex flex-col md:w-1/2">
                 <label for="nama_ormawa" class="font-bold text-xl pb-2 text-customBlack">Nama Ormawa</label>
-                <input type="text" id="nama_ormawa" name="nama_ormawa" value="{{ $ormawa->nama_ormawa }}" placeholder="Masukkan Nama Ormawa" class="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:border-customBlue">
+                <input type="text" id="nama_ormawa" name="nama_ormawa" value="{{ $profil->nama_ormawa }}" placeholder="Masukkan Nama Ormawa" class="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:border-customBlue">
             </div>
             <div class="flex flex-col md:w-1/2 mt-4 md:mt-0">
                 <label for="singkatan_ormawa" class="font-bold text-xl pb-2 pt-2 md:pt-0 text-customBlack">Singkatan</label>
-                <input type="text" id="singkatan_ormawa" name="singkatan_ormawa" value="{{ $ormawa->singkatan }}" placeholder="Masukkan Singkatan" class="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:border-customBlue">
+                <input type="text" id="singkatan_ormawa" name="singkatan_ormawa" value="{{ $profil->singkatan }}" placeholder="Masukkan Singkatan" class="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:border-customBlue">
             </div>
         </div>
 
@@ -39,11 +39,11 @@
         <div class="mt-4 flex flex-col md:flex-row h-auto md:h-14 w-11/12 mx-auto mb-8 space-x-0 md:space-x-10">
             <div class="flex flex-col md:w-1/2">
                 <label for="jenis_ormawa" class="font-bold text-xl pb-2 pt-2 md:pt-0 text-customBlack">Jenis Ormawa</label>
-                <input type="text" id="jenis_ormawa" name="jenis_ormawa" value="{{ $ormawa->jenis_ormawa }}" class="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:border-customBlue" readonly>
+                <input type="text" id="jenis_ormawa" name="jenis_ormawa" value="{{ $profil->jenis_ormawa }}" class="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:border-customBlue" readonly>
             </div>
             <div class="flex flex-col md:w-1/2 mt-4 md:mt-0">
                 <label for="jurusan" class="font-bold text-xl pb-2 pt-2 md:pt-0 text-customBlack">Jurusan</label>
-                <input type="text" id="jurusan" name="jurusan" value="{{ $ormawa->jurusan }}" class="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:border-customBlue" readonly>
+                <input type="text" id="jurusan" name="jurusan" value="{{ $profil->jurusan }}" class="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:border-customBlue" readonly>
             </div>
         </div>
 

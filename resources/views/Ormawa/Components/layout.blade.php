@@ -14,32 +14,6 @@
         <main class="overflow-hidden overflow-y-scroll">
             @yield('content')
         </main>
-    {{-- <footer id="footer"
-        class="flex flex-row justify-end items-center bg-customBlack w-screen h-fit text-white px-8 py-2.5 mt-8">
-        <div class="w-80 pr-20">
-            <p class="font-bold text-[10px]">Lokasi</p>
-            <p class="font-bold text-[10px] text-gray-500">Lorem Ipsum is simply dummy text of the printing and
-                typesetting industry.
-                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
-        </div>
-
-        <div class="pr-20">
-            <p class="font-bold text-[10px]">Telepon</p>
-            <p class="font-bold text-[10px] text-gray-500 pb-2">+000000</p>
-
-            <p class="font-bold text-[10px]">Email</p>
-            <p class="font-bold text-[10px] text-gray-500">@itk.ac.id</p>
-        </div>
-
-        <div class="flex flex-col items-end pr-8">
-            <p class="font-bold text-[12px]">Sistem Manajemen Informasi</p>
-            <p class="font-bold text-[12px]">Layanan Kemahasiswaan</p>
-            <p class="font-bold text-[12px] text-customLightBlue">Institut Teknologi Kalimantan</p>
-        </div>
-
-        <img src="{{ asset('images/logo_itk.png') }}" alt="Logo ITK" class="h-20">
-    </footer> --}}
-
     <script>
         function adjustContentMargin() {
             const footerHeight = document.getElementById('myFooter').offsetHeight;
@@ -88,7 +62,7 @@
                         <p class="font-bold text-base items">Proposal Kegiatan</p>
                     </div>
                 </a>
-                <a href="{{ route('LPJKegiatan') }}" class="flex items-center text-customBlack py-2 mt-2">
+                <a href="{{ route('LPJkegiatan.beranda') }}" class="flex items-center text-customBlack py-2 mt-2">
                     <div class="bg-customWhite rounded-full w-10">
                         <i class="fa-solid fa-file-circle-exclamation fa-2x mr-2"></i>
                     </div>

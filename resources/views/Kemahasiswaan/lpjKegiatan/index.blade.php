@@ -2,9 +2,9 @@
 <title>LPJ Kegiatan</title>
 
 @section('content')
-<div class="flex flex-col items-center justify-center my-8 ml-4 md:ml-16 lg:ml-36 mr-4">
+<div class="flex flex-col items-center justify-center mt-32 ml-4 md:ml-16 lg:ml-36 mr-4">
     <div class="flex items-center justify-between bg-blue-500 text-white w-full md:w-full h-20 shadow-lg">
-        <p class="text-base md:text-lg font-bold ml-4">Daftar LPJ Kegiatan</p>
+        <p class="text-base md:text-lg font-bold ml-4">LPJ Kegiatan</p>
         <div class="flex items-center bg-white rounded-lg px-4 py-2 relative h-10 mr-4">
             <span class="absolute left-0 flex items-center justify-center w-10 h-10">
                 <i class="fas fa-search text-customBlack"></i>
@@ -20,7 +20,7 @@
     </div>
     
     <!-- Header kolom -->
-    <div class="bg-customWhite w-full md:w-full shadow-md mt-2 border border-gray-500 overflow-x-auto">
+    <div class="bg-customWhite w-full md:w-full shadow-md mt-2 border border-customBlack overflow-x-auto">
         <div class="flex flex-row justify-between p-2 md:p-4">
             <p class="text-center w-1/8 text-xs md:text-sm">#</p>
             <p class="text-center w-1/12 text-xs md:text-sm">Nama Ormawa</p>
@@ -37,9 +37,8 @@
     </div>
 
     <!-- Isi tabel -->
-    <div class="container bg-customWhite w-full md:w-full">
         @foreach ($lpjkegiatan as $index => $item)
-        <div class="bg-customWhite w-full md:w-full shadow-md border border-gray-500 overflow-x-auto">
+        <div class="bg-customWhite w-full md:w-full shadow-md border border-customBlack overflow-x-auto">
             <div class="flex flex-row justify-between p-2 md:p-4">
                 <p class="text-center w-1/8 text-xs md:text-sm">{{ $index + 1 }}</p>
                 <p class="text-center w-1/12 text-xs md:text-sm">{{ $item->proposalKegiatan->SKlegalitas->pengajuanLegalitas->ormawaPembina->ormawa->nama_ormawa }}</p>

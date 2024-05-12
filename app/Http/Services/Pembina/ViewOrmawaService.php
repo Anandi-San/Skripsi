@@ -15,7 +15,7 @@ class ViewOrmawaService {
     // Langkah 1: Ambil ID pengguna yang sedang login
     $userId = Auth::user()->id;
 
-    // Cari ID pembina berdasarkan ID pengguna dari tabel pembina
+    // Cari ID pembina berdasarkan ID pengg una dari tabel pembina
     $pembina = Pembina::where('id_pengguna', $userId)->first();
     // dd($pembina);
 
@@ -42,9 +42,30 @@ class ViewOrmawaService {
 
     // Langkah 3: Ambil data Ormawa berdasarkan ID Ormawa
     $ormawas = Ormawa::whereIn('id', $ormawaIds)
-        ->get(['nama_ormawa', 'logo_ormawa']);
+    ->with([
+        'pengurusOrmawa' => function ($query) {
+            $query->select('id_ormawa', 'visi', 'misi');
+        },
+        'ormawaPembina' => function ($query) {
+            $query->with([
+                'pengajuanLegalitas' => function ($query) {
+                    $query->with([
+                        'skLegalitas' => function ($query) {
+                            $query->with([
+                                'proposalKegiatan' => function ($query) {
+                                    $query->with('monitoringKegiatan');
+                                }
+                            ]);
+                        }
+                    ]);
+                }
+            ]);
+        }
+    ])
+    ->get();
+    // dd($ormawas);
 
-    // Langka 4: ambil data pada kepengurusan ormawa dan kegiatan ormawa
+    // selanjutnya itu harus dapat data monitoring kegiatan
 
     // Kembalikan data Ormawa
     return [

@@ -2,9 +2,9 @@
 <title>Daftar Pembina</title>
 
 @section('content')
-    <div class="flex flex-col items-center justify-center my-2 ml-4 md:ml-16 lg:ml-36 mr-4">
-        <div class="items-start justify-start w-full md:w-9/12">
-            <p class="text-base md:text-lg font-bold ml-4 text-customBlack">Daftar Pembina</p>
+    <div class="flex flex-col items-center justify-center mt-36 ml-4 md:ml-16 lg:ml-36 mr-4">
+        <div class="items-start justify-start w-9/12">
+        <p class="text-base md:text-2xl font-bold text-customBlack">Daftar Pembina</p>
         </div>
         <div class="flex items-center bg-blue-500 text-white w-full md:w-9/12 h-20 shadow-lg">
             <div class="flex items-center w-full p-4">
@@ -30,10 +30,10 @@
             </div>
         </div>
 
-        <div class="bg-customWhite w-full md:w-9/12 shadow-md border border-gray-500 overflow-x-auto">
+        <div class="bg-customWhite w-full md:w-9/12 shadow-md border border-customBlack overflow-x-auto">
             <div class="flex flex-row justify-between p-2 md:p-4">
                 <p class="text-center w-1/8 text-xs md:text-sm mr-1">#</p>
-                <p class="text-center w-1/16 text-xs md:text-sm mr-1">Nama Pembina</p>
+                <p class="text-center w-1/12 text-xs md:text-sm mr-1">Nama Pembina</p>
                 <p class="text-center w-1/12 text-xs md:text-sm mr-1">Ormawa</p>
                 <p class="text-center w-1/12 text-xs md:text-sm mr-1">Lainnya</p>
                 <p class="text-center w-1/12 text-xs md:text-sm mr-1">Status</p>
@@ -41,30 +41,32 @@
             </div>
         </div>
 
-        <div class="container bg-customWhite w-full md:w-9/12 shadow-md border border-gray-500 overflow-x-auto">
+        <div class="bg-customWhite w-full md:w-9/12">
             @foreach ($pembinaList as $index => $pembina)
-                <div class="flex flex-row justify-between p-2 md:p-4">
+                <div class=" bg-customWhite w-full md:w-full shadow-md border border-customBlack overflow-x-auto">
+                    <div class="flex flex-row justify-between p-2 md:p-4">
                     <p class="text-center w-1/8 text-xs md:text-sm mr-1">{{ $index + 1 }}</p>
-                    <p class="text-center w-1/5 text-xs md:text-sm mr-1">{{ $pembina->nama_pembina }}</p>
+                    <p class="text-center w-1/12 text-xs md:text-sm mr-1">{{ $pembina->nama_pembina }}</p>
                     @foreach($pembina->ormawaPembina as $ormawa)
-                        <p class="text-center w-1/5 text-xs md:text-sm mr-1">{{ $ormawa->ormawa->nama_ormawa }}</p>
+                        <p class="text-center w-1/12 text-xs md:text-sm mr-1">{{ $ormawa->ormawa->nama_ormawa }}</p>
                     @endforeach
                     <p class="text-center w-1/12 text-xs md:text-sm mr-1">{{ $pembina->lainnya ?? 'Lainnya' }}</p>
                     <p class="text-center w-1/12 text-xs md:text-sm mr-1">{{ $pembina->status ?? 'aktif' }}</p>
-                    <p class="text-center w-1/12 text-xs md:text-sm mr-1">
+                    <p class="text-center w-1/12 text-xs md:text-lg mr-1">
                         <!-- Ganti teks "Edit" dengan ikon pensil -->
                         <a href="#" class="mr-2" title="Edit">
-                            <i class="fas fa-pencil-alt text-blue-500"></i>
-                        </a>
+                            <i class="fas fa-pencil-alt text-blue-500 ml-2"></i>
+                        </a> |
                         <!-- Ganti teks "Delete" dengan ikon tong sampah -->
                         <a href="#" title="Delete">
-                            <i class="fas fa-trash text-red-500"></i>
+                            <i class="fas fa-trash text-red-500 ml-2"></i>
                         </a>
                     </p>
+                    </div>
                 </div>
             @endforeach
         </div>
     </div>
 
-    @include('pembina.Components.footer2')
+    @include('Pembina.Components.footer2')
 @endsection

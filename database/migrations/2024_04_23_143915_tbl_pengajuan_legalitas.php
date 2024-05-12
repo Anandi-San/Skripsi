@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('daftar_sarana_prasarana')->nullable();
             $table->string('GBHK')->nullable();
             $table->string('LPJ_kepengurusan')->nullable();
-            $table->enum('status', ['belum_unggah', 'menunggu', 'revisi', 'disetujui'])->nullable();
+            $table->enum('status', ['Belum Unggah', 'Menunggu', 'Revisi Kemahasiswaan', 'Telah Dorevisi', 'Disetujui'])->default('Belum Unggah')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

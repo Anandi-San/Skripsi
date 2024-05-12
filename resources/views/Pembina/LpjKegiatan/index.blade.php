@@ -1,53 +1,48 @@
 @extends('Pembina.Components.layout')
-<title>Unggah Proposal Legalitas</title>
+<title>LPJ kegiatan</title>
 
 @section('content')
     @extends('Pembina.Components.stepper')
-    
-
-
-
-    @php
-        $states = [
-            [
-                'state' => '1',
-            ],
-            [
-                'state' => 'Sampul Depan',
-            ],
-            [
-                'state' => 'Lampiran 1',
-            ],
-            [
-                'state' => 'Lampiran 2',
-            ],
-            [
-                'state' => 'Lampiran 3',
-            ],
-            [
-                'state' => 'Sampul Belakang',
-            ],
-        ];
-    @endphp
 
     <div class="flex flex-col items-center justify-center my-8 ml-4 md:ml-16 lg:ml-36 mr-4">
         <div class="flex items-center bg-blue-500 text-white w-full md:w-9/12 h-20 shadow-lg">
-            <p class="text-base md:text-lg font-bold ml-4">Daftar Proposal Legalitas</p>
+            <p class="text-base md:text-lg font-bold ml-4">LPJ Kegiatan</p>
         </div>
-        <div class="bg-customWhite w-full md:w-9/12 shadow-md mt-2 border border-gray-500 overflow-x-auto">
+        <div class="bg-customWhite w-full md:w-9/12 shadow-md mt-2 border border-customBlack overflow-x-auto">
             <div class="flex flex-row justify-between p-2 md:p-4">
-                <p class="text-center w-1/8 md:w-auto text-xs md:text-sm mr-1">#</p>
-                <p class="text-center w-1/8 md:w-auto text-xs md:text-sm mr-1">Sampul Depan</p>
-                <p class="text-center w-1/8 md:w-auto text-xs md:text-sm mr-1">Lampiran 1</p>
-                <p class="text-center w-1/8 md:w-auto text-xs md:text-sm mr-1">Lampiran 2</p>
-                <p class="text-center w-1/8 md:w-auto text-xs md:text-sm mr-1">Lampiran 3</p>
-                <p class="text-center w-1/8 md:w-auto text-xs md:text-sm mr-1">Sampul Belakang</p>
+                <p class="text-center w-1/8 text-xs md:text-sm mr-1">#</p>
+                <p class="text-center w-1/12 text-xs md:text-sm mr-1">Sampul Depan</p>
+                <p class="text-center w-1/12 text-xs md:text-sm mr-1">Lampiran 1</p>
+                <p class="text-center w-1/12 text-xs md:text-sm mr-1">Lampiran 2</p>
+                <p class="text-center w-1/12 text-xs md:text-sm mr-1">Lampiran 3</p>
+                <p class="text-center w-1/12 text-xs md:text-sm mr-1">Lainnya</p>
+                <p class="text-center w-1/12 text-xs md:text-sm mr-1">Sampul Belakang</p>
+                <p class="text-center w-1/12 text-xs md:text-sm mr-1">Status</p>
+                <p class="text-center w-1/12 text-xs md:text-sm mr-1">Operasi</p>    
             </div>
         </div>
-        <div class="bg-customWhite w-full md:w-9/12 shadow-md border border-gray-500 overflow-x-auto">
+        <div class="bg-customWhite w-full md:w-9/12 shadow-md border border-customBlack overflow-x-auto">
             <div class="flex flex-row justify-between p-2 md:p-4">
-                @foreach ($states as $state)
-                    <p class="text-center w-1/8 md:w-auto text-xs md:text-sm mr-1">{!! $state['state'] !!}</p>
+                @foreach ($lpjKegiatanData as $index => $lpjKegiatan)
+                    <p class="text-center w-1/8  text-xs md:text-sm mr-1">{{ $index + 1 }}</p>
+                    <p class="text-center w-1/12 text-xs md:text-sm mr-1">{{ $lpjKegiatan['sampul_depan'] }}</p>
+                    <p class="text-center w-1/12 text-xs md:text-sm mr-1">{{ $lpjKegiatan['lampiran1'] }}</p>
+                    <p class="text-center w-1/12 text-xs md:text-sm mr-1">{{ $lpjKegiatan['lampiran2'] }}</p>
+                    <p class="text-center w-1/12 text-xs md:text-sm mr-1">{{ $lpjKegiatan['lampiran3'] }}</p>
+                    <p class="text-center w-1/12 text-xs md:text-sm mr-1">Lainnya</p>
+                    <p class="text-center w-1/12 text-xs md:text-sm mr-1">{{ $lpjKegiatan['sampul_belakang'] }}</p>
+                    <p class="text-center w-1/12  text-xs md:text-sm mr-1">{{ $lpjKegiatan->status }}</p>
+                    <p class="text-center w-1/12 text-xs md:text-sm mr-1">
+                        <!-- Unduh dengan ikon -->
+                        <a href='#' target="_blank" title="Unduh" class="mx-2">
+                            <i class="fas fa-download"></i>
+                        </a>
+                        
+                        <!-- Hapus dengan ikon -->
+                        <a href="#" title="Hapus" class="mx-2 border-l pl-2 border-gray-300">
+                            <i class="fas fa-trash"></i>
+                        </a>
+                    </p>               
                 @endforeach
             </div>
         </div>

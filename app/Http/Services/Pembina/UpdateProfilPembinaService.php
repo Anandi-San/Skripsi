@@ -25,7 +25,8 @@ class UpdateProfilPembinaService {
         $user = Auth::user();
         
         // Dapatkan data Pembina terkait pengguna
-        $profil = $user->pembina;
+        $profil = $user->pembina->first();
+        // dd($profil);
 
         // Hapus logo lama jika ada
         if ($profil->photo_pembina) {
@@ -51,7 +52,7 @@ class UpdateProfilPembinaService {
         $user = Auth::user();
         
         // Dapatkan data Pembina terkait pengguna
-        $profil = $user->pembina;
+        $profil = $user->pembina->first();
 
         if ($profil->photo_pembina) {
             $filePath = public_path($profil->photo_pembina);

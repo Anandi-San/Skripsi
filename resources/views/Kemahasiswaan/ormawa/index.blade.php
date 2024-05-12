@@ -2,9 +2,9 @@
 <title>Daftar Ormawa</title>
 
 @section('content')
-    <div class="flex flex-col items-center justify-center my-2 ml-4 md:ml-16 lg:ml-36 mr-4">
-        <div class="items-start justify-start w-full max-w-screen-lg">
-        <p class="text-base md:text-lg font-bold ml-4 text-customBlack">Daftar Ormawa</p>
+    <div class="flex flex-col items-center justify-center mt-32 ml-4 md:ml-16 lg:ml-36 mr-4">
+        <div class="items-start justify-start w-9/12">
+        <p class="text-base md:text-2xl font-bold text-customBlack">Daftar Ormawa</p>
         </div>
         <div class="flex items-center bg-blue-500 text-white w-full md:w-9/12 h-20 shadow-lg">
             <!-- Search box and add button container -->
@@ -41,26 +41,25 @@
         
         {{-- // container hasil --}}
         <div id="searchResults" class=""></div>
-        
-        <div class="bg-customWhite w-full md:w-9/12 shadow-md border border-gray-500 overflow-x-auto">
+        <div class="bg-customWhite w-full md:w-9/12 shadow-md border border-customBlack overflow-x-auto">
             <div class="flex flex-row justify-between p-2 md:p-4">
                 <p class="text-center w-1/8 text-xs md:text-sm mr-1">#</p>
-                <p class="text-center w-1/16 text-xs md:text-sm mr-1">Nama Ormawa</p>
+                <p class="text-center w-1/12 text-xs md:text-sm mr-1">Nama Ormawa</p>
                 <p class="text-center w-1/12 text-xs md:text-sm mr-1">Pembina</p>
                 <p class="text-center w-1/12 text-xs md:text-sm mr-1">Lainnya</p>
                 <p class="text-center w-1/12 text-xs md:text-sm mr-1">Status</p>
                 <p class="text-center w-1/12 text-xs md:text-sm mr-1">Operasi</p>
             </div>
         </div>
-        <div class="container bg-customWhite w-full md:w-9/12 ">
+        <div class="bg-customWhite w-full md:w-9/12 ">
             @foreach ($ormawaList as $index => $ormawa)
                 <!-- Kotak terpisah untuk setiap item ormawa -->
-                <div class=" bg-customWhite w-full md:w-full shadow-md border border-gray-500 overflow-x-auto  p-4">
-                    <div class="flex flex-row justify-between p-2">
+                <div class=" bg-customWhite w-full md:w-full shadow-md border border-customBlack overflow-x-auto">
+                    <div class="flex flex-row justify-between p-2 md:p-4">
                         <p class="text-center w-1/8 text-xs md:text-sm mr-1">{{ $index + 1 }}</p>
                         <p class="text-center w-1/12 text-xs md:text-sm mr-1">{{ $ormawa->nama_ormawa }}</p>
                         @foreach($ormawa->ormawaPembina as $pembina)
-                            <p class="text-center w-1/8 text-xs md:text-sm mr-1">{{ $pembina->pembina->nama_pembina ?? 'pembina' }}</p>
+                            <p class="text-center w-1/12 text-xs md:text-sm mr-1">{{ $pembina->pembina->nama_pembina ?? 'pembina' }}</p>
                         @endforeach
                         <p class="text-center w-1/12 text-xs md:text-sm mr-1">{{ $ormawa->lainnya ?? 'Lainnya' }}</p>
                         <p class="text-center w-1/12 text-xs md:text-sm mr-1">{{ $ormawa->status ?? 'aktif' }}</p>
@@ -77,6 +76,7 @@
                     </div>
                 </div>
             @endforeach
+            </div>
         </div>
         
         

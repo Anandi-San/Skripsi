@@ -35,13 +35,27 @@ class Proposal_Kegiatan extends Model
         'status',
     ];
     
+    // Model SKlegalitas
+    public function proposalKegiatan()
+    {
+        return $this->hasMany(Proposal_Kegiatan::class, 'id_SK_legalitas');
+    }
+
+    // Model Proposal_Kegiatan
     public function skLegalitas()
     {
         return $this->belongsTo(SKlegalitas::class, 'id_SK_legalitas');
     }
-    public function proposalKegiatan()
+    // ProposalKegiatan.php
+    public function lpjKegiatan()
     {
-        return $this->hasOne(Proposal_Kegiatan::class, 'id_SK_legalitas');
+        return $this->hasOne(LPJKegiatan::class, 'id_proposal_kegiatan');
     }
+    public function monitoringKegiatan()
+    {
+        return $this->hasMany(MonitoringKegiatan::class, 'id_proposal_kegiatan');
+    }
+
+
 }
 
