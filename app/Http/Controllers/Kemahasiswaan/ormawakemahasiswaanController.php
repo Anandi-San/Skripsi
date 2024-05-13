@@ -26,7 +26,7 @@ class ormawakemahasiswaanController extends Controller
      */
     public function create()
     {
-        //
+        return $this->ormawaService->create();
     }
 
     /**
@@ -34,7 +34,7 @@ class ormawakemahasiswaanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return $this->ormawaService->store($request);
     }
 
     /**
@@ -50,7 +50,7 @@ class ormawakemahasiswaanController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        return $this->ormawaService->edit($id);
     }
 
     /**
@@ -58,7 +58,7 @@ class ormawakemahasiswaanController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        return $this->ormawaService->update($request, $id);
     }
 
     /**
@@ -66,6 +66,6 @@ class ormawakemahasiswaanController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        return $this->ormawaService->destroy($id);
     }
 }

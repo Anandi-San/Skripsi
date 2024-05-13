@@ -9,42 +9,42 @@ use Illuminate\Support\Facades\Auth;
 class ProposalKegiatan {
 
     public function unggah($proposal)
-    {
+{
     $user = Auth::user();
-    
 
     // Cek apakah pengguna merupakan pembina ormawa
     $ormawaPembina = $user->ormawaPembina->first();
-    // dd($ormawaPembina);
-
 
     // Dapatkan pengajuan legalitas yang terkait dengan pengguna
     $legalitas = $ormawaPembina->pengajuanLegalitas->first();
     // dd($legalitas);
-    
-    $pengajuanLegalitas = $legalitas->skLegalitas->first();
+
+    // Dapatkan proposal kegiatan terkait
+    $pengajuanLegalitas = $legalitas ? $legalitas->skLegalitas->first() : null;
     // dd($pengajuanLegalitas);
 
-    $skLegalitas = $pengajuanLegalitas->proposalKegiatan;
-    
-    if ($skLegalitas) {
-        // Jika pengajuan legalitas sudah ada, periksa statusnya
-        if ($legalitas->status === 'Menunggu') {
-            return redirect()->route('menungguProposalKegiatan');
-        } elseif ($legalitas->status === 'Revisi Kemahasiswaan') {
-            // Jika pengajuan legalitas sudah disetujui, arahkan ke halaman tertentu
-            return redirect()->route('ListRevisiproposalKegiatan');
-        } elseif ($legalitas->status === 'Telah Dorevisi') {
-            return redirect()->route('RevisiproposalKegiatan');
+    $sklegalitas = $pengajuanLegalitas->proposalKegiatan->first();
+    // dd($sklegalitas);
+
+    // Jika belum mengunggah, tampilkan halaman unggah legalitas
+    if (!$sklegalitas) {
+        $data = [
+            'proposal' => $proposal,
+        ];
+        return view('Ormawa/ProposalKegiatan/unggah', $data);
+    }
+
+    // Jika pengajuan legalitas sudah ada, periksa statusnya
+    if ($sklegalitas->status === 'Menunggu') {
+        return redirect()->route('menungguProposalKegiatan');
+    } elseif ($sklegalitas->status === 'Revisi Kemahasiswaan') {
+        // Jika pengajuan penga$sklegalitas sudah disetujui, arahkan ke halaman tertentu
+        return redirect()->route('ListRevisiproposalKegiatan');
+    } elseif ($pengajuanLegalitas->status === 'Telah Dorevisi') {
+        return redirect()->route('RevisiproposalKegiatan');
     }
 }
 
-    // Jika belum mengunggah, tampilkan halaman unggah legalitas
-    $data = [
-        'proposal' => $proposal,
-    ];
-    return view('Ormawa/ProposalKegiatan/unggah', $data);
-    }
 
     public function menunggu()
     {
@@ -171,6 +171,10 @@ class ProposalKegiatan {
         ['id_SK_legalitas' => $sk_legalitas->id], // Tentukan kondisi pencarian
         array_merge($textData, $fileData)
     );
+
+    if (!$proposal_kegiatan->status) {
+        $proposal_kegiatan->status = 'Menunggu';
+    }
 
     // Simpan model untuk menyimpan perubahan ke database
     $proposal_kegiatan->save();

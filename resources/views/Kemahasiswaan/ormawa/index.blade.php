@@ -30,12 +30,13 @@
                 <div class="flex-grow"></div>
                 
                 <!-- Add button container -->
-                <div class="flex items-center w-36 bg-white rounded-lg px-4 py-2 cursor-pointer" onclick="handleAddButton()">
+                <div class="flex items-center w-36 bg-white rounded-lg px-4 py-2 cursor-pointer">
                     <!-- Plus icon -->
                     <i class="fas fa-plus text-customBlack mr-2"></i>
                     <!-- Add text -->
-                    <span class="text-customBlack font-medium">Tambah</span>
+                    <a href="{{ route('editOrmawa.create') }}" class="text-customBlack font-medium">Tambah</a>
                 </div>
+                
             </div>
         </div>
         
@@ -44,11 +45,11 @@
         <div class="bg-customWhite w-full md:w-9/12 shadow-md border border-customBlack overflow-x-auto">
             <div class="flex flex-row justify-between p-2 md:p-4">
                 <p class="text-center w-1/8 text-xs md:text-sm mr-1">#</p>
-                <p class="text-center w-1/12 text-xs md:text-sm mr-1">Nama Ormawa</p>
+                <p class="text-center w-1/6 text-xs md:text-sm mr-1">Nama Ormawa</p>
                 <p class="text-center w-1/12 text-xs md:text-sm mr-1">Pembina</p>
                 <p class="text-center w-1/12 text-xs md:text-sm mr-1">Lainnya</p>
                 <p class="text-center w-1/12 text-xs md:text-sm mr-1">Status</p>
-                <p class="text-center w-1/12 text-xs md:text-sm mr-1">Operasi</p>
+                <p class="text-center w-1/6 text-xs md:text-sm mr-1">Operasi</p>
             </div>
         </div>
         <div class="bg-customWhite w-full md:w-9/12 ">
@@ -57,22 +58,29 @@
                 <div class=" bg-customWhite w-full md:w-full shadow-md border border-customBlack overflow-x-auto">
                     <div class="flex flex-row justify-between p-2 md:p-4">
                         <p class="text-center w-1/8 text-xs md:text-sm mr-1">{{ $index + 1 }}</p>
-                        <p class="text-center w-1/12 text-xs md:text-sm mr-1">{{ $ormawa->nama_ormawa }}</p>
+                        <p class="text-center w-1/6 text-xs md:text-sm mr-1">{{ $ormawa->nama_ormawa }}</p>
                         @foreach($ormawa->ormawaPembina as $pembina)
                             <p class="text-center w-1/12 text-xs md:text-sm mr-1">{{ $pembina->pembina->nama_pembina ?? 'pembina' }}</p>
                         @endforeach
                         <p class="text-center w-1/12 text-xs md:text-sm mr-1">{{ $ormawa->lainnya ?? 'Lainnya' }}</p>
                         <p class="text-center w-1/12 text-xs md:text-sm mr-1">{{ $ormawa->status ?? 'aktif' }}</p>
-                        <p class="text-center w-1/12 text-xs md:text-lg mr-1">
+                        <div class="text-center w-1/6 text-xs md:text-lg mr-1">
                             <!-- Tautan untuk mengedit dengan ikon pensil -->
-                            <a href="#" title="Edit" class="mr-2">
+                            <a href="#" title="List" class="mr-2">
                                 <i class="fas fa-users text-blue-500 ml-2"></i>
                             </a> |
-                            <!-- Tautan untuk menghapus dengan ikon tong sampah -->
-                            <a href="#" title="Delete">
-                                <i class="fas fa-trash text-red-500 ml-2"></i>
-                            </a>
-                        </p>
+                            <a href="{{ route('edit.Ormawa', $ormawa->id) }}" title="Edit" class="mr-2">
+                                <i class="fas fa-edit text-yellow-500 ml-2"></i>
+                            </a> |
+                            <!-- Form untuk menghapus dengan ikon tong sampah -->
+                            <form method="POST" action="{{ route('destroy.Ormawa', $ormawa->id) }}" onsubmit="return confirm('Apakah Anda yakin ingin menghapus Ormawa ini?')" class="inline-block">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" title="Delete" class="text-red-500 ml-2 bg-transparent border-none cursor-pointer">
+                                    <i class="fas fa-trash text-red-500"></i>
+                                </button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             @endforeach

@@ -1,4 +1,4 @@
-@extends('Kemahasiswaan.Components.layout')
+ @extends('Kemahasiswaan.Components.layout')
 <title>Daftar Pembina</title>
 
 @section('content')
@@ -55,7 +55,7 @@
                     <p class="text-center w-1/12 text-xs md:text-lg mr-1">
                         <!-- Ganti teks "Edit" dengan ikon pensil -->
                         <a href="#" class="mr-2" title="Edit">
-                            <i class="fas fa-pencil-alt text-blue-500 ml-2"></i>
+                            <i class="fas fa-edit text-blue-500 ml-2"></i>
                         </a> |
                         <!-- Ganti teks "Delete" dengan ikon tong sampah -->
                         <a href="#" title="Delete">

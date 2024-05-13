@@ -18,20 +18,27 @@
         <div class="flex flex-col sm:flex-row sm:space-x-10">
             <div class="flex flex-col mr-2 mt-4">
                 <label for="jumlah-dana-{{ $proposalId }}" class="font-bold text-lg text-customBlack mb-2">Jumlah Dana (Rp):</label>
-                @foreach ($monitoringKegiatans as $monitoringKegiatan)
-                    <!-- Access the properties of each object in the array -->
-                    <input type="text" id="jumlah-dana-{{ $proposalId }}" name="jumlah-dana[]" value="Rp. {{ number_format($monitoringKegiatan['saldo'], 2, ',', '.') }}" class="sm:w-11/12 border border-gray-300 px-4 py-2 focus:outline-none focus:border-customBlue" readonly>
-                @endforeach
+                @if (!empty($monitoringKegiatans))
+                    @foreach ($monitoringKegiatans as $monitoringKegiatan)
+                        <!-- Access the properties of each object in the array -->
+                        <input type="text" id="jumlah-dana-{{ $proposalId }}" name="jumlah-dana[]" value="Rp. {{ number_format($monitoringKegiatan['saldo'], 2, ',', '.') }}" class="sm:w-11/12 border border-gray-300 px-4 py-2 focus:outline-none focus:border-customBlue" readonly>
+                    @endforeach
+                @else
+                    <input type="text" id="jumlah-dana-{{ $proposalId }}" name="jumlah-dana[]" value="" class="sm:w-11/12 border border-gray-300 px-4 py-2 focus:outline-none focus:border-customBlue" readonly>
+                @endif
             </div>
             <div class="flex flex-col mr-2 mt-4">
                 <label for="dana-digunakan-{{ $proposalId }}" class="font-bold text-lg text-customBlack mb-2">Dana yang Digunakan:</label>
-                @foreach ($monitoringKegiatans as $monitoringKegiatan)
-                    <!-- Access the properties of each object in the array -->
-                    <input type="text" id="dana-digunakan-{{ $proposalId }}" name="dana-digunakan[]" value="Rp. {{ number_format($monitoringKegiatan['jumlah_dana'], 2, ',', '.') }}" class="sm:w-11/12 border border-gray-300 px-4 py-2 focus:outline-none focus:border-customBlue" readonly>
-                @endforeach
+                @if (!empty($monitoringKegiatans))
+                    @foreach ($monitoringKegiatans as $monitoringKegiatan)
+                        <!-- Access the properties of each object in the array -->
+                        <input type="text" id="dana-digunakan-{{ $proposalId }}" name="dana-digunakan[]" value="Rp. {{ number_format($monitoringKegiatan['jumlah_dana'], 2, ',', '.') }}" class="sm:w-11/12 border border-gray-300 px-4 py-2 focus:outline-none focus:border-customBlue" readonly>
+                    @endforeach
+                @else
+                    <input type="text" id="dana-digunakan-{{ $proposalId }}" name="dana-digunakan[]" value="" class="sm:w-11/12 border border-gray-300 px-4 py-2 focus:outline-none focus:border-customBlue" readonly>
+                @endif
             </div>
         </div>
-        
         <!-- Bagian untuk input jenis pembayaran -->
         <div id="payment-container" class="flex flex-col mt-4">
             <label class="font-bold text-lg text-customBlack mb-2">Pembayaran:</label>
@@ -71,7 +78,7 @@
     @endforeach
 </div>
 
-@include('Ormawa.Components.footer')
+@include('Ormawa.Components.footer2')
 @endsection
 
 <script>

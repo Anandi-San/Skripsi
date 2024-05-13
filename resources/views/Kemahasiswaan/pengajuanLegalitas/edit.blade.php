@@ -1,89 +1,121 @@
-@extends('Kemahasiswaan.Components.layout')
-<title>Edit Pengajuan Legalitas</title>
+<!DOCTYPE html>
+<html lang="en">
 
-@section('content')
-<div class="flex flex-col items-center">
-    <div class="bg-customBlack h-16 w-full flex items-center justify-center">
-        <p class="text-white text-center text-lg md:text-2xl">SK Legalitas</p>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Membuka File PDF Lokal</title>
+</head>
+
+<body>
+    <!-- Tambahkan tombol untuk mengaktifkan/menonaktifkan mode mencoret -->
+    <button id="toggle-draw">Aktifkan Coretan</button>
+
+    <div id="pdf-viewer">
+        <canvas id="pdf-render"></canvas>
     </div>
-    
-    <div class="flex justify-center w-screen mt-4">
-        <div class="bg-customGray h-screen w-4/6 ml-6 flex justify-center items-center">
-            <!-- Elemen canvas untuk PDF -->
-            <canvas id="pdfCanvas"></canvas>
-        </div>
-        
-        <div class="bg-customGray h-screen w-1/6 flex flex-col justify-center">
-            <!-- Tombol Download -->
-            <button class="bg-customBlue text-white font-bold py-3 px-6 rounded mb-4 text-sm" id="downloadButton">Download</button>
-        </div>
-    </div>
-</div>
 
-<script>
-    // Mendapatkan elemen canvas
-    const canvas = document.getElementById('pdfCanvas');
-    const context = canvas.getContext('2d');
+    <script src="{{ asset('pdfjs/build/pdf.mjs') }}" type="module"></script>
+    <script type="module">
+        var {
+            pdfjsLib
+        } = globalThis;
 
-    // URL file PDF
-    const pdfUrl = '{{ Storage::url("legalitas/" . $pdfFile) }}';
+        // Atur path ke direktori PDF.js
+        pdfjsLib.GlobalWorkerOptions.workerSrc = "{{ asset('pdfjs/build/pdf.worker.mjs') }}";
 
-    // Fungsi untuk menampilkan PDF menggunakan pdf-lib.js
-    async function displayPdf() {
-        // Memuat PDF dari URL
-        const response = await fetch(pdfUrl);
-        const arrayBuffer = await response.arrayBuffer();
-        
-        // Buat PDFDocument
-        const pdfDoc = await PDFLib.PDFDocument.load(arrayBuffer);
+        async function displayPDF() {
+            const pdfPath = "{{ asset('example.pdf') }}"; // Ganti dengan path ke file PDF Anda
 
-        // Ambil halaman pertama
-        const page = pdfDoc.getPages()[0];
-        
-        // Dapatkan dimensi halaman
-        const { width, height } = page.getSize();
-        
-        // Sesuaikan ukuran canvas
-        canvas.width = width;
-        canvas.height = height;
-        
-        // Render halaman PDF di canvas
-        const imageData = await page.render({
-            canvasContext: context,
-            viewport: page.getViewport({ scale: 1 })
-        });
-    }
+            try {
+                const pdf = await pdfjsLib.getDocument(pdfPath).promise;
+                const totalPages = pdf.numPages;
 
-    // Panggil fungsi untuk menampilkan PDF saat halaman dimuat
-    displayPdf();
+                // Dapatkan konteks canvas
+                const canvasContainer = document.getElementById('pdf-viewer');
+                const toggleDrawButton = document.getElementById('toggle-draw');
 
-    // Fungsi untuk mengunduh PDF
-    document.getElementById('downloadButton').addEventListener('click', async () => {
-        const pdfDoc = await PDFLib.PDFDocument.create();
-        
-        // Tambahkan halaman baru
-        const page = pdfDoc.addPage();
-        
-        // Ambil gambar dari canvas
-        const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
-        
-        // Tambahkan gambar ke halaman
-        const image = await pdfDoc.embedPng(imageData);
-        const { width, height } = image.scale(1);
-        page.drawImage(image, { x: 0, y: height, width, height });
-        
-        // Simpan PDF dan unduh
-        const pdfBytes = await pdfDoc.save();
-        const blob = new Blob([pdfBytes], { type: 'application/pdf' });
-        const url = URL.createObjectURL(blob);
-        
-        const link = document.createElement('a');
-        link.href = url;
-        link.download = '{{ $pdfFile }}';
-        link.click();
-        
-        // Hapus URL objek untuk membersihkan sumber daya
-        URL.revokeObjectURL(url);
-    });
-</script>
-@endsection
+                // Buat variabel untuk menyimpan data coretan
+                const annotations = [];
+                let isDrawing = false;
+
+                // Inisialisasi event listener untuk menggambar coretan
+                let lastX = 0;
+                let lastY = 0;
+
+                toggleDrawButton.addEventListener('click', () => {
+                    isDrawing = !isDrawing; // Mengubah status mode mencoret
+                    toggleDrawButton.textContent = isDrawing ? 'Nonaktifkan Coretan' : 'Aktifkan Coretan';
+                });
+
+                canvasContainer.addEventListener('mousedown', (e) => {
+                    if (isDrawing) {
+                        [lastX, lastY] = [e.offsetX, e.offsetY];
+                    }
+                });
+
+                canvasContainer.addEventListener('mousemove', (e) => {
+                    if (!isDrawing) return;
+                    if (!e.buttons) return; // Coretan hanya dibuat saat tombol mouse ditekan
+                    const canvas = e.target;
+                    const context = canvas.getContext('2d');
+
+                    // Gambar garis coretan
+                    context.beginPath();
+                    context.moveTo(lastX, lastY);
+                    context.lineTo(e.offsetX, e.offsetY);
+                    context.strokeStyle = 'red';
+                    context.lineWidth = 2;
+                    context.stroke();
+
+                    // Simpan data coretan
+                    annotations.push({
+                        type: 'line',
+                        startX: lastX,
+                        startY: lastY,
+                        endX: e.offsetX,
+                        endY: e.offsetY,
+                        color: 'red',
+                        lineWidth: 2
+                    });
+
+                    [lastX, lastY] = [e.offsetX, e.offsetY];
+                });
+
+                // Iterasi untuk setiap halaman
+                for (let pageNumber = 1; pageNumber <= totalPages; pageNumber++) {
+                    const page = await pdf.getPage(pageNumber);
+                    const scale = 1.5;
+                    const viewport = page.getViewport({
+                        scale
+                    });
+
+                    // Buat canvas untuk halaman
+                    const canvas = document.createElement('canvas');
+                    canvas.className = 'pdf-page';
+                    canvas.width = viewport.width;
+                    canvas.height = viewport.height;
+                    canvasContainer.appendChild(canvas);
+
+                    // Render PDF ke canvas
+                    const context = canvas.getContext('2d');
+                    const renderContext = {
+                        canvasContext: context,
+                        viewport: viewport
+                    };
+                    await page.render(renderContext).promise;
+                }
+
+                // TODO: Simpan data coretan dan kirim ke server (opsional)
+                console.log(annotations);
+            } catch (error) {
+                console.error('Error rendering PDF:', error);
+            }
+        }
+
+        displayPDF();
+    </script>
+
+</body>
+
+</html>

@@ -112,14 +112,30 @@ Route::prefix('/pembina')->middleware('auth')->group(function () {
 
 Route::prefix('/kemahasiswaan')->middleware('auth')->group(function () {
     Route::get('/beranda', [BerandaKemahasiswaanController::class, 'index'])->name('kemahasiswaan');
+
+    //Pengajuan Legalitas
     Route::resource('/pengajuanlegalitas',pengajuanlegalitaskemahasiswaanController::class);
     Route::get('/edit_pengajuanlegalitas/{id}/{type}', [PDFpengajuanController::class, 'edit'])->name('edit_pengajuanpdf');
+
+    // Proposal Kegiatan
     Route::resource('/proposalKegiatan',proposalkegiatankemahasiswaanController::class);
     Route::get('/edit_proposalkegiatan/{id}/{type}', [PDFproposalKegiatanController::class, 'edit'])->name('edit_proposalpdf');
+
+    // LPJ Kegiatan
     Route::resource('/LPJKegiatan', lpjkegiatankemasiswaanController::class);
     Route::get('/edit_LPJKegiatan/{id}/{type}', [PDFLpjKegiatanController::class, 'edit'])->name('edit_LPJkegiatanpdf');
+
+    // Edit Ormawa
     Route::resource('/editOrmawa', ormawakemahasiswaanController::class);
+    Route::get('/editOrmawa/{id}/edit', [ormawakemahasiswaanController::class, 'edit'])->name('edit.Ormawa');
+    Route::post('/editOrmawa/{id}', [ormawakemahasiswaanController::class, 'update'])->name('update.Ormawa');
+    Route::delete('editOrmawa/{id}/destroy', 'OrmawaController@destroy')->name('destroy.Ormawa');
+
+    // Edit Pembina
     Route::resource('/Pembina', pembinakemahasiswaanController::class);
+    Route::get('/editPembina/{id}/edit', [pembinakemahasiswaanController::class, 'edit'])->name('edit.Pembina');
+
+    // edit Sk
     Route::resource('/editSKlegalitas', sklegalitaskemahasiswaanController::class); 
     Route::get('/edit_Sklegalitas/{id}/{type}', [PDFskLegalitasController::class, 'edit'])->name('edit_SKlegalitaspdf');
     Route::resource('/editProfil', UpdateProfilController::class);

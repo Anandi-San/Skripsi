@@ -10,6 +10,7 @@ class PembinaService {
 {
     // Menggunakan eager loading untuk memuat ormawaPembina dan data terkait ormawa
     $pembinaList = Pembina::with('ormawaPembina.ormawa')->get();
+    // dd($pembinaList);
     
     // Mengirimkan data ke view
     return $pembinaList;

@@ -17,7 +17,7 @@ class ProposalKegiatanOrmawaController extends Controller
 
     public function unggah()
     {
-    $proposal = "Proposal Pengajuan Legalitas"; // Set the desired value for $proposal
+    $proposal = "Proposal Kegiatan"; // Set the desired value for $proposal
         return $this->proposalKegiatan->unggah($proposal);
     }
 
