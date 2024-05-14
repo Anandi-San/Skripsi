@@ -3,10 +3,10 @@
 
 @section('content')
     <div class="flex flex-col items-center justify-center  ml-4 md:ml-16 lg:ml-36 mr-4 mt-36">
-        <div class="flex items-center bg-blue-500 text-white w-full md:w-9/12 h-20 shadow-lg">
-            <p class="text-base md:text-lg font-bold ml-4">Daftar Proposal Legalitas</p>
+        <div class="flex items-center bg-blue-500 text-white w-full md:w-11/12 h-20 shadow-lg">
+            <p class="text-base md:text-lg font-bold ml-4">SK Legalitas</p>
         </div>
-        <div class="bg-customWhite w-9/12 md:w-9/12 shadow-md mt-2 border border-customBlack overflow-x-auto">
+        <div class="bg-customWhite w-11/12 md:w-11/12 shadow-md mt-2 border border-customBlack overflow-x-auto">
             <div class="flex flex-row justify-between p-2 md:p-4">
                 <p class="text-center w-1/8 text-xs md:text-sm mr-1">#</p>
                 <p class="text-center w-1/12 text-xs md:text-sm mr-1">Nama Ormawa</p>
@@ -17,10 +17,10 @@
                 <p class="text-center w-1/12 text-xs md:text-sm mr-1">SK Legalitas</p>
                 <p class="text-center w-1/12 text-xs md:text-sm mr-1">Lainnya</p>
                 <p class="text-center w-1/12 text-xs md:text-sm mr-1">status</p>
-                <p class="text-center w-1/12 text-xs md:text-sm mr-1">Operasi</p>
+                <p class="text-center w-36 text-xs md:text-sm mr-1">Operasi</p>
             </div>
         </div>
-        <div class="container bg-customWhite w-full md:w-9/12 ">
+        <div class="container bg-customWhite w-full md:w-11/12 ">
             @foreach ($skLegalitasData as $index => $data)
             <div class="bg-customWhite w-full md:w-full border border-customBlack overflow-x-auto">
             <div class="flex flex-row justify-between p-2 md:p-4">
@@ -32,16 +32,17 @@
                     <p class="text-center w-1/12 text-xs md:text-sm mr-1">{{ $data['tanggal_berlaku_selesai'] }}</p>
                     <p class="text-center w-1/12 text-xs md:text-sm mr-1">{{ $data['file_sk'] }}</p>
                     <p class="text-center w-1/12 text-xs md:text-sm mr-1">Lainnya</p>
-                    <p class="text-center w-1/12 text-xs md:text-sm mr-1">{{ $data['status'] }}</p>
                     <p class="text-center w-1/12 text-xs md:text-sm mr-1">
+                        <span class="rounded-lg border px-2 py-1 bg-customBlack text-white">{{ $data['status'] }}</span></p>
+                    <p class="text-center w-36 text-xs md:text-xl mr-1">
                         <!-- Unduh dengan ikon -->
-                        <a href='#' target="_blank" title="Unduh" class="mx-2">
+                        <a href='#' target="_blank" title="Unduh" class="mr-1">
                             <i class="fas fa-download"></i>
                         </a>
-                        
+                        |
                         <!-- Hapus dengan ikon -->
-                        <a href="#" title="Hapus" class="mx-2 border-l pl-2 border-gray-300">
-                            <i class="fas fa-trash"></i>
+                        <a href="#" title="Kirim" class="ml-1">
+                            <i class="fas fa-file-upload"></i>
                         </a>
                     </p>
                     @endforeach

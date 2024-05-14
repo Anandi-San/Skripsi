@@ -38,7 +38,7 @@
     <!-- Isi tabel -->
     <div class="bg-customWhite w-full shadow-md border border-customBlack overflow-x-auto">
         @foreach ($proposal_kegiatan as $index => $item)
-        <div class="flex flex-row justify-between p-2 md:p-4 border-b border-gray-300">
+        <div class="flex flex-row justify-between p-2 md:p-4 border-b border-customBlack">
             <p class="text-center w-1/8  text-xs md:text-sm">{{ $index + 1 }}</p>
             <p class="text-center w-1/12  text-xs md:text-sm">{{ $item->skLegalitas->pengajuanLegalitas->ormawaPembina->ormawa->nama_ormawa }}</p>
             <p class="text-center w-1/12  text-xs md:text-sm">

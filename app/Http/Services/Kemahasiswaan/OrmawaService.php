@@ -91,6 +91,8 @@ public function store(Request $request)
         'pembina' => 'required|array', // Memastikan bahwa pembina yang dipilih adalah array
         'pembina.*' => 'integer', // Memastikan bahwa setiap elemen di dalam array adalah integer (ID pembina)
         'logo_ormawa' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        'tanggal_mulai' => 'required|date',
+        'tanggal_selesai' => 'required|date',
     ]);
 
     // Simpan data email dan password ke tabel pengguna
@@ -124,6 +126,8 @@ public function store(Request $request)
         $ormawaPembina = new OrmawaPembina;
         $ormawaPembina->id_ormawa = $ormawa->id;
         $ormawaPembina->id_pembina = $id_pembina;
+        $ormawaPembina->tanggal_mulai = $request->tanggal_mulai;
+        $ormawaPembina->tanggal_selesai = $request->tanggal_selesai;
         // Anda mungkin perlu mengganti nilai default dengan nilai yang sesuai
         $ormawaPembina->id_pengurus_ormawa = 1;
         $ormawaPembina->save();

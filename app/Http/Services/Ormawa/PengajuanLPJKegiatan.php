@@ -25,39 +25,16 @@ class PengajuanLPJkegiatan {
 
     return view('Ormawa/LpjKegiatan/index', $data);
     }
-    public function unggah()
+    public function unggah($id)
     {
         $data = [
-            'content' => 'ormawa/LpjKegiatan/index',
+            'proposal_id' => $id,
         ];
+
         return view('Ormawa/LpjKegiatan/unggah', $data);
     }
 
-    public function menunggu()
-    {
-        $data = [
-            'content' => 'ormawa/LpjKegiatan/menunggu',
-        ];
-        return view('Ormawa/LpjKegiatan/menunggu', $data);
-    }
 
-    public function listRevisi()
-    {
-        $data = [
-            'content' => 'ormawa/LpjKegiatan/listRevisi',
-        ];
-        return view('Ormawa/LpjKegiatan/listRevisi', $data);
-    }
-
-    public function Revisi()
-    {
-        $data = [
-            'content' => 'ormawa/LpjKegiatan/Revisi',
-        ];
-        return view('Ormawa/LpjKegiatan/revisi', $data);
-    }
-
-    // ATUR Status
     public function store(Request $request)
     {
         // Validasi input
@@ -80,8 +57,10 @@ class PengajuanLPJkegiatan {
             'files.*' => 'required|file|max:5120',
         ]);
         // dd($request);
-
-        $proposalId = $request->input('proposal_id');
+        // dd($request);
+        $proposalId = $request->proposal_id;
+        // dd($proposalId);
+        
 
         // Simpan data ke dalam variabel
         $textData = [];
@@ -124,6 +103,8 @@ class PengajuanLPJkegiatan {
             'Sampul Belakang',
         ];
         
+        
+
         // Proses setiap file
         foreach ($fileFields as $index => $field) {
             $fileInputName = 'file-upload-' . $index;
@@ -155,4 +136,32 @@ class PengajuanLPJkegiatan {
         // Arahkan ke halaman berikutnya
         return redirect()->route('waitingrevision');
     }
+
+    public function menunggu()
+    {
+        $data = [
+            'content' => 'ormawa/LpjKegiatan/menunggu',
+        ];
+        return view('Ormawa/LpjKegiatan/menunggu', $data);
+    }
+
+    public function listRevisi()
+    {
+        $data = [
+            'content' => 'ormawa/LpjKegiatan/listRevisi',
+        ];
+        return view('Ormawa/LpjKegiatan/listRevisi', $data);
+    }
+
+    public function Revisi()
+    {
+        $data = [
+            'content' => 'ormawa/LpjKegiatan/revisi',
+        ];
+
+        return view('Ormawa/LpjKegiatan/revisi', $data);
+    }
+
+    // ATUR Status
+    
 }

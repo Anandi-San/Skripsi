@@ -67,11 +67,24 @@
         <div class="mt-4 flex flex-col md:flex-row h-auto md:h-14 w-11/12 mx-auto mb-8 space-x-0 md:space-x-10">
             <div class="flex flex-col md:w-1/2">
                 <label for="pembina" class="font-bold text-xl pb-2 pt-2 md:pt-0 text-customBlack">Pembina</label>
-                <select id="pembina" name="pembina[]" multiple class="border border-gray-300 rounded-lg px-4 py-4 focus:outline-none focus:border-customBlue">
+                <select id="pembina" name="pembina[]" class="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:border-customBlue">
+                    <option value="">Pilih Pembina</option>
                     @foreach($pembinas as $pembina)
+                    {{-- <option value="">Pilih Pembina</option> --}}
                     <option value="{{ $pembina->id }}">{{ $pembina->nama_pembina }}</option>
                     @endforeach
                 </select>
+            </div>
+            <div class="flex flex-col md:w-1/2 h-20 mt-4 md:mt-0">
+                <label for="tanggal_mulai" class="font-bold text-xl pb-2 pt-2 md:pt-0 text-customBlack">Tanggal Mulai</label>
+                <input type="date" id="tanggal_mulai" name="tanggal_mulai" placeholder="Masukkan Tanggal Mulai" class="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:border-customBlue">
+            </div>
+        </div>
+
+        <div class="mt-4 flex flex-col md:flex-row h-auto md:h-14 w-11/12 mx-auto mb-8 space-x-0 md:space-x-10">
+            <div class="flex flex-col h-20 md:w-1/2">
+                <label for="tanggal_selesai" class="font-bold text-xl pb-2 pt-2 md:pt-0 text-customBlack">Tanggal Selesai</label>
+                <input type="date" id="tanggal_selesai" name="tanggal_selesai" placeholder="Masukkan Tanggal Selesai" class="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:border-customBlue">
             </div>
             <div class="flex flex-col md:w-1/2 mt-4 md:mt-0">
             </div>
@@ -86,5 +99,5 @@
     </div>
 </form>
 
-{{-- @include('Ormawa.Components.footer2') --}}
+@include('Ormawa.Components.footer')
 @endsection

@@ -5,7 +5,8 @@
         @extends('Ormawa.Components.stepper')
 
         <form action="{{ route('lpjkegiatan.upload') }}" method="post" enctype="multipart/form-data">
-        @csrf 
+        @csrf
+        <input type="hidden" name="proposal_id" value="{{ $proposal_id }}">
         <div class="grid grid-cols-2 grid-rows-2 gap-8">
         @php
             $title = ['Judul Kegiatan','Pendahuluan Kegiatan', 'Tujuan Kegiatan', 'Nama Kegiatan', 'Bentuk Kegiatan', 'Sasaran', 'Parameter Keberhasilan', 'Waktu dan Tempat Kegiatan', 'Susunan Acara', 'Rancangan Anggaran Biaya', 'Kepanitiaan', 'Penganggung Jawab', 'Penutup']

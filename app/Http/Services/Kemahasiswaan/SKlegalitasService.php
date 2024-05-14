@@ -9,6 +9,7 @@ class SKlegalitasService {
 public function index()
     {
         $skLegalitas = SKlegalitas::with('pengajuanLegalitas.ormawaPembina.ormawa')->get();
+        // dd($skLegalitas);
 
         return $skLegalitas;
     }

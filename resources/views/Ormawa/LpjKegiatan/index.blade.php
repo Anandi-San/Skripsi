@@ -10,7 +10,7 @@
     <div class="bg-customWhite w-full md:w-9/12 shadow-md mt-2 border border-gray-500 overflow-x-auto">
         <div class="flex flex-row justify-between p-2 md:p-4">
             <p class="text-center w-1/8 md:w-auto text-xs md:text-sm mr-1">#</p>
-            <p class="text-center w-1/12 md:w-auto text-xs md:text-sm mr-1">Nama Kegiatan</p>
+            <p class="text-center w-1/6 md:w-auto text-xs md:text-sm mr-1">Nama Kegiatan</p>
             <p class="text-center w-1/12 md:w-auto text-xs md:text-sm mr-1">Operasi</p>
         </div>
     </div>
@@ -19,12 +19,13 @@
             @foreach ($proposalKegiatan as $index => $proposal)
                 <p class="text-center w-1/8 md:w-auto text-xs md:text-sm mr-1">{{ $index + 1 }}</p>
                 <p class="text-center w-1/12 md:w-auto text-xs md:text-sm mr-1">{{ $proposal->nama_kegiatan }}</p>
-                <input type="hidden" name="proposal_id" value="{{ $proposal->id }}">
-                <!-- Tambahkan tombol "Tambah" di sini -->
-                <button type="submit" class="bg-customBlack hover:bg-green-600 text-white font-bold py-2 px-4 rounded-full flex items-center">
-                    <i class="fas fa-plus mr-2"></i>
-                    Tambah
-                </button>
+                <a href="{{ route('LPJKegiatan', ['id' => $proposal->id]) }}" class="text-center w-1/12 md:w-auto text-xs md:text-sm mr-1">
+                    <button type="button" class="bg-customBlack hover:bg-green-600 text-white font-bold py-2 px-4 rounded-full flex items-center">
+                        <i class="fas fa-plus mr-2"></i>
+                        Tambah
+                    </button>
+                </a>
+                
             @endforeach
         </div>
     </div>

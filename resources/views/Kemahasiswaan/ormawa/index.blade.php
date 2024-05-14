@@ -30,12 +30,11 @@
                 <div class="flex-grow"></div>
                 
                 <!-- Add button container -->
-                <div class="flex items-center w-36 bg-white rounded-lg px-4 py-2 cursor-pointer">
-                    <!-- Plus icon -->
+                <a href="{{ route('editOrmawa.create') }}" class="flex items-center w-36 bg-white rounded-lg px-4 py-2 cursor-pointer text-customBlack font-medium no-underline">
                     <i class="fas fa-plus text-customBlack mr-2"></i>
-                    <!-- Add text -->
-                    <a href="{{ route('editOrmawa.create') }}" class="text-customBlack font-medium">Tambah</a>
-                </div>
+                    <span>Tambah</span>
+                </a>
+                
                 
             </div>
         </div>

@@ -1,4 +1,4 @@
- @extends('Kemahasiswaan.Components.layout')
+@extends('Kemahasiswaan.Components.layout')
 <title>Daftar Pembina</title>
 
 @section('content')
@@ -23,10 +23,10 @@
                 
                 <div class="flex-grow"></div>
                 
-                <div class="flex items-center w-36 bg-white rounded-lg px-4 py-2 cursor-pointer" onclick="handleAddButton()">
+                <a href="{{ route('Pembina.create') }}" class="flex items-center w-36 bg-white rounded-lg px-4 py-2 cursor-pointer" onclick="handleAddButton()">
                     <i class="fas fa-plus text-customBlack mr-2"></i>
                     <span class="text-customBlack font-medium">Tambah</span>
-                </div>
+                </a>
             </div>
         </div>
 
@@ -35,7 +35,6 @@
                 <p class="text-center w-1/8 text-xs md:text-sm mr-1">#</p>
                 <p class="text-center w-1/12 text-xs md:text-sm mr-1">Nama Pembina</p>
                 <p class="text-center w-1/12 text-xs md:text-sm mr-1">Ormawa</p>
-                <p class="text-center w-1/12 text-xs md:text-sm mr-1">Lainnya</p>
                 <p class="text-center w-1/12 text-xs md:text-sm mr-1">Status</p>
                 <p class="text-center w-1/12 text-xs md:text-sm mr-1">Operasi</p>
             </div>
@@ -50,11 +49,10 @@
                     @foreach($pembina->ormawaPembina as $ormawa)
                         <p class="text-center w-1/12 text-xs md:text-sm mr-1">{{ $ormawa->ormawa->nama_ormawa }}</p>
                     @endforeach
-                    <p class="text-center w-1/12 text-xs md:text-sm mr-1">{{ $pembina->lainnya ?? 'Lainnya' }}</p>
                     <p class="text-center w-1/12 text-xs md:text-sm mr-1">{{ $pembina->status ?? 'aktif' }}</p>
                     <p class="text-center w-1/12 text-xs md:text-lg mr-1">
                         <!-- Ganti teks "Edit" dengan ikon pensil -->
-                        <a href="#" class="mr-2" title="Edit">
+                        <a href="{{ route('edit.Pembina', $pembina->id) }}" class="mr-2" title="Edit">
                             <i class="fas fa-edit text-blue-500 ml-2"></i>
                         </a> |
                         <!-- Ganti teks "Delete" dengan ikon tong sampah -->

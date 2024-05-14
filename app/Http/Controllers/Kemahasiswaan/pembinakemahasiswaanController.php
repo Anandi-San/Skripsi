@@ -27,7 +27,7 @@ class pembinakemahasiswaanController extends Controller
      */
     public function create()
     {
-        //
+        return $this->pembinaService->create();
     }
 
     /**
@@ -35,7 +35,7 @@ class pembinakemahasiswaanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return  $this->pembinaService->store($request);
     }
 
     /**
@@ -51,7 +51,7 @@ class pembinakemahasiswaanController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        return $this->pembinaService->edit($id);
     }
 
     /**
@@ -59,7 +59,7 @@ class pembinakemahasiswaanController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        return $this->pembinaService->update($request, $id);
     }
 
     /**
@@ -67,6 +67,6 @@ class pembinakemahasiswaanController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        return $this->pembinaService->destroy($id);
     }
 }

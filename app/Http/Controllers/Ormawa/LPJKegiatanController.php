@@ -21,9 +21,9 @@ class LPJKegiatanController extends Controller
     return $this->pengajuanLPJKegiatan->index();
     }
 
-    public function unggah()
+    public function unggah($id)
     {
-    return $this->pengajuanLPJKegiatan->unggah();
+    return $this->pengajuanLPJKegiatan->unggah($id);
     }
 
     public function menunggu()

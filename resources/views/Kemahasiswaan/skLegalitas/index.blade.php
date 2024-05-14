@@ -3,7 +3,7 @@
 
 @section('content')
 <div class="flex flex-col items-center justify-center mt-32 ml-4 md:ml-16 lg:ml-36 mr-4">
-    <div class="flex items-center justify-between bg-blue-500 text-white w-full md:w-9/12 h-20 shadow-lg">
+    <div class="flex items-center justify-between bg-blue-500 text-white w-full md:w-11/12 h-20 shadow-lg">
         <p class="text-base md:text-lg font-bold ml-4">Daftar SK Legalitas</p>
         <div class="flex items-center bg-white rounded-lg px-4 py-2 relative h-10 mr-4 ">
             <span class="absolute left-0 flex items-center justify-center w-10 h-10">
@@ -18,7 +18,7 @@
             />
         </div>
     </div>
-        <div class="bg-customWhite w-full md:w-9/12 shadow-md mt-2 border border-customBlack overflow-x-auto">
+        <div class="bg-customWhite w-full md:w-11/12 shadow-md mt-2 border border-customBlack overflow-x-auto">
             <div class="flex flex-row justify-between p-2 md:p-4">
                 <p class="text-center w-1/8 text-xs md:text-sm mr-1">#</p>
                 <p class="text-center w-1/12 text-xs md:text-sm mr-1">Nama Ormawa</p>
@@ -28,13 +28,12 @@
                 <p class="text-center w-1/12 text-xs md:text-sm mr-1">Tanggal Berlaku Selesai</p>
                 <p class="text-center w-1/12 text-xs md:text-sm mr-1">SK Legalitas</p>
                 <p class="text-center w-1/12 text-xs md:text-sm mr-1">Status</p>
-                <p class="text-center w-1/12 text-xs md:text-sm mr-1">Operasi</p>
+                <p class="text-center w-36 text-xs md:text-sm mr-1">Operasi</p>
             </div>
         </div>
-            <div class="container bg-customWhite w-full md:w-9/12 ">
+        <div class="bg-customWhite w-full md:w-11/12 shadow-md border border-customBlack overflow-x-auto">
                 @foreach ($skLegalitas as $index => $legalitas)
-                <div class=" bg-customWhite w-full md:w-full shadow-md border border-customBlack overflow-x-auto  p-4">
-                <div class="flex flex-row justify-between p-2 md:p-4">
+                <div class="flex flex-row justify-between p-2 md:p-4 border-b border-customBlack">
                     <p class="text-center w-1/8 text-xs md:text-sm mr-1">{{ $index + 1 }}</p>
                     <p class="text-center w-1/12 text-xs md:text-sm mr-1">{{ $legalitas->pengajuanLegalitas->ormawaPembina->ormawa->nama_ormawa }}</p>
                     <p class="text-center w-1/12 text-xs md:text-sm mr-1">{{ $legalitas->nomor_SK }}</p>
@@ -46,8 +45,9 @@
                             {{ $legalitas->file_SK }}
                         </a>
                     </p>
-                    <p class="text-center w-1/12 text-xs md:text-sm mr-1">{{ $legalitas->status }}</p>
-                    <p class="text-center w-1/10 text-xs md:text-sm mr-1">
+                    <p class="text-center w-1/12 text-xs md:text-sm mr-1">
+                        <span class="rounded-lg border px-2 py-1 bg-customBlack text-white">{{ $legalitas->status }}</span></p>
+                    <p class="text-center w-36 text-xs md:text-sm">
                         <!-- Unduh dengan ikon -->
                         <a href="{{ asset('storage/sk_legalitas' . $legalitas->sk_legalitas) }}" target="_blank" title="Unduh" class="mx-2">
                             <i class="fas fa-download"></i>

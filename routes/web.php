@@ -83,7 +83,7 @@ Route::prefix('/ormawa')->middleware('auth')->group(function () {
     Route::post('/LPJKegiatan/upload', [LPJKegiatanController::class, 'store'])->name('lpjkegiatan.upload');
     Route::get('/LPJKegiatan/menunggu', [LPJKegiatanController::class, 'menunggu'])->name('menungguLPJKegiatan'); 
     Route::get('/LPJKegiatan/daftarRevisi', [LPJKegiatanController::class, 'listRevisi'])->name('ListRevisiLPJKegiatan'); 
-    Route::get('/LPJKegiatan/Revisi', [LPJKegiatanController::class, 'revisi'])->name('RevisiLPJKegiatan'); 
+    Route::get('/LPJKegiatan/Revisi/{id}', [LPJKegiatanController::class, 'revisi'])->name('RevisiLPJKegiatan'); 
     
     //Sk Legalitas
     Route::get('/SKlegalitas', [SkLegalitasController::class, 'index'])->name('Sklegalitas');
@@ -134,6 +134,7 @@ Route::prefix('/kemahasiswaan')->middleware('auth')->group(function () {
     // Edit Pembina
     Route::resource('/Pembina', pembinakemahasiswaanController::class);
     Route::get('/editPembina/{id}/edit', [pembinakemahasiswaanController::class, 'edit'])->name('edit.Pembina');
+    Route::post('/editPembina/{id}', [pembinakemahasiswaanController::class, 'update'])->name('update.Pembina');
 
     // edit Sk
     Route::resource('/editSKlegalitas', sklegalitaskemahasiswaanController::class); 

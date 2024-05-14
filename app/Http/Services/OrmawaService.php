@@ -43,20 +43,20 @@ class OrmawaService
                 // dd($skLegalitas);
 
             // Mengambil data proposal kegiatan terbaru
-            $proposalKegiatan = Proposal_Kegiatan::where('id_SK_legalitas', $ormawa->id)
-                // ->latest()
-                ->get();
-                // ->get();
-                // dd($proposalKegiatan);
-
+           // Mengambil data proposal kegiatan terbaru
+            $proposalKegiatan = Proposal_Kegiatan::where('id_SK_legalitas', $skLegalitas->id)
+            ->latest()
+            ->get();
+ 
             // Mengambil data LPJ kegiatan terbaru
             $lpjKegiatan = collect();
             foreach ($proposalKegiatan as $proposal) {
-                $lpj = LPJKegiatan::where('id_proposal_kegiatan', $proposal->id)
-                    ->latest()
-                    ->first();
-                $lpjKegiatan->push($lpj);
+            $lpj = LPJKegiatan::where('id_proposal_kegiatan', $proposal->id)
+                ->latest()
+                ->first();
+            $lpjKegiatan->push($lpj);
             }
+
                 // dd($lpjKegiatan);
 
             return [
