@@ -15,10 +15,14 @@ class ProposalKegiatanOrmawaController extends Controller
         $this->proposalKegiatan = $proposalKegiatan;
     }
 
+    public function index()
+    {
+        return $this->proposalKegiatan->index();
+    }
+
     public function unggah()
     {
-    $proposal = "Proposal Kegiatan"; // Set the desired value for $proposal
-        return $this->proposalKegiatan->unggah($proposal);
+        return $this->proposalKegiatan->unggah();
     }
 
     public function menunggu()

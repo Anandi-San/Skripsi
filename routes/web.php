@@ -70,6 +70,7 @@ Route::prefix('/ormawa')->middleware('auth')->group(function () {
     route::patch('/legalitas/revisi', [PengajuanLegalitasController::class, 'update'])->name('revisi.pengajuan');
 
     // Proposal Kegiatan
+    Route::get('/proposalKegiatan/beranda', [ProposalKegiatanOrmawaController::class, 'index'])->name('index.proposalKegiatan'); 
     Route::get('/proposalKegiatan', [ProposalKegiatanOrmawaController::class, 'unggah'])->name('proposalKegiatan'); 
     Route::post('/proposalKegiatan/upload', [ProposalKegiatanOrmawaController::class, 'store'])->name('proposalkegiatan.upload');
     Route::get('/proposalKegiatan/menunggu', [ProposalKegiatanOrmawaController::class, 'menunggu'])->name('menungguProposalKegiatan'); 

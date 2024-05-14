@@ -2,21 +2,23 @@
 
 namespace App\Http\Services\Ormawa;
 
+use App\Models\LPJKegiatan;
 use App\Models\Proposal_Kegiatan;
 use Illuminate\Http\Request;
-use App\Models\LPJkegiatan;
 use Illuminate\Support\Facades\Auth;
+
 
 class PengajuanLPJkegiatan {
 
     public function index()
     {
-        $userId = Auth::user()->id;
+    $userId = Auth::user()->id;
 
     // Dapatkan data proposal kegiatan yang terkait dengan pengguna yang sedang login
     $proposalKegiatan = Proposal_Kegiatan::whereHas('skLegalitas.pengajuanLegalitas.ormawaPembina.ormawa.pengguna', function ($query) use ($userId) {
         $query->where('id', $userId);
     })->get();
+    // dd($proposalKegiatan);
 
     // Kemudian kembalikan data ke blade
     $data = [
@@ -27,6 +29,39 @@ class PengajuanLPJkegiatan {
     }
     public function unggah($id)
     {
+        // Periksa apakah ada data LPJ untuk proposal_id yang diberikan
+        $lpjKegiatan = LPJKegiatan::where('id_proposal_kegiatan', $id)->first();
+
+        if ($lpjKegiatan && $lpjKegiatan->status === 'Menunggu') {
+            // Jika data LPJ ada dan statusnya "Menunggu", arahkan ke halaman menungguLPJKegiatan
+            return redirect()->route('menungguLPJKegiatan');
+        } elseif 
+            ($lpjKegiatan && $lpjKegiatan->status === 'Revisi Pembina') {
+            // Jika data LPJ ada dan statusnya "Menunggu", arahkan ke halaman menungguLPJKegiatan
+            return redirect()->route('ListRevisiLPJKegiatan');
+        } elseif 
+            ($lpjKegiatan && $lpjKegiatan->status === 'Telah Direvisi') {
+            // Jika data LPJ ada dan statusnya "Menunggu", arahkan ke halaman menungguLPJKegiatan
+            return redirect()->route('ListRevisiLPJKegiatan');
+        } elseif 
+            ($lpjKegiatan && $lpjKegiatan->status === 'Disetujui Pembina') {
+            // Jika data LPJ ada dan statusnya "Menunggu", arahkan ke halaman menungguLPJKegiatan
+            return redirect()->route('ListRevisiLPJKegiatan');
+        } elseif 
+            ($lpjKegiatan && $lpjKegiatan->status === 'Revisi Kemahasiswaan') {
+            // Jika data LPJ ada dan statusnya "Menunggu", arahkan ke halaman menungguLPJKegiatan
+            return redirect()->route('ListRevisiLPJKegiatan');
+        } elseif 
+            ($lpjKegiatan && $lpjKegiatan->status === 'Telah Direvisi Kemahasiswaan') {
+            // Jika data LPJ ada dan statusnya "Menunggu", arahkan ke halaman menungguLPJKegiatan
+            return redirect()->route('ListRevisiLPJKegiatan');
+        } elseif 
+            ($lpjKegiatan && $lpjKegiatan->status === 'Disetujui') {
+            // Jika data LPJ ada dan statusnya "Menunggu", arahkan ke halaman menungguLPJKegiatan
+            return redirect()->route('ListRevisiLPJKegiatan');
+        }
+
+        // Jika tidak ada atau statusnya berbeda, lanjutkan dengan logika saat ini
         $data = [
             'proposal_id' => $id,
         ];
@@ -125,10 +160,13 @@ class PengajuanLPJkegiatan {
         }
 
         // Masukkan data teks dan file ke dalam model Proposal_Kegiatan
-        $lpjKegiatan = LPJkegiatan::updateOrCreate(
+        $lpjKegiatan = LPJKegiatan::updateOrCreate(
             ['id_proposal_kegiatan' => $proposalId], // Tentukan kondisi pencarian
             array_merge($textData, $fileData)
         );
+        if (!$lpjKegiatan->status) {
+        $lpjKegiatan->status = 'Menunggu';
+    }
 
         // Simpan model untuk menyimpan perubahan ke database
         $lpjKegiatan->save();

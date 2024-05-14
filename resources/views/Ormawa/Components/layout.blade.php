@@ -54,7 +54,7 @@
                         <p class="font-bold text-base">Pengajuan Legalitas</p>
                     </div>
                 </a>
-                <a href="{{ route('proposalKegiatan') }}" class="flex items-center text-customBlack py-2 mt-2">
+                <a href="{{ route('index.proposalKegiatan') }}" class="flex items-center text-customBlack py-2 mt-2">
                     <div class="bg-customWhite rounded-full w-10">
                         <i class="fa-solid fa-file-lines fa-2x mr-2"></i>
                     </div>

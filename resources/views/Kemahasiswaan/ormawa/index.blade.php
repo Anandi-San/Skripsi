@@ -54,7 +54,6 @@
         <div class="bg-customWhite w-full md:w-9/12 ">
             @foreach ($ormawaList as $index => $ormawa)
                 <!-- Kotak terpisah untuk setiap item ormawa -->
-                <div class=" bg-customWhite w-full md:w-full shadow-md border border-customBlack overflow-x-auto">
                     <div class="flex flex-row justify-between p-2 md:p-4">
                         <p class="text-center w-1/8 text-xs md:text-sm mr-1">{{ $index + 1 }}</p>
                         <p class="text-center w-1/6 text-xs md:text-sm mr-1">{{ $ormawa->nama_ormawa }}</p>
